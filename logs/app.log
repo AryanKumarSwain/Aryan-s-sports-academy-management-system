@@ -1,0 +1,614 @@
+{"timestamp":"2026-03-16 13:46:44","level":"info","message":"Server boot starting","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:46:44","level":"info","message":"Server started successfully","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:56:28","level":"info","message":"Server boot starting","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:56:28","level":"info","message":"Server started successfully","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:56:35","level":"info","message":"Server boot starting","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:56:35","level":"info","message":"Server started successfully","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:56:55","level":"info","message":"Server boot starting","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:56:55","level":"info","message":"Server started successfully","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:57:01","level":"info","message":"Server boot starting","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:57:01","level":"info","message":"Server started successfully","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:57:18","level":"info","message":"Server boot starting","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:57:18","level":"info","message":"Server started successfully","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:57:33","level":"info","message":"Server boot starting","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:57:33","level":"info","message":"Server started successfully","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:58:05","level":"info","message":"Server boot starting","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:58:05","level":"info","message":"Server started successfully","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:58:06","level":"info","message":"Server boot starting","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:58:06","level":"info","message":"Server started successfully","stack":null,"service":"enterprise-express-app","env":"development","port":5000}
+{"timestamp":"2026-03-16 13:58:42","level":"warn","message":"SIGINT received, shutting down server","stack":null,"service":"enterprise-express-app"}
+{"timestamp":"2026-05-22 19:40:10","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 19:40:10","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 19:43:14","level":"warn","message":"Route not found","stack":null,"service":"sports-academy-sas","method":"GET","url":"/api/","ip":"::1"}
+{"timestamp":"2026-05-22 19:43:14","level":"info","message":"GET /api/ 404 10.709 ms - 45","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:43:14","level":"warn","message":"Route not found","stack":null,"service":"sports-academy-sas","method":"GET","url":"/favicon.ico","ip":"::1"}
+{"timestamp":"2026-05-22 19:43:14","level":"info","message":"GET /favicon.ico 404 2.240 ms - 45","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:43:54","level":"warn","message":"Route not found","stack":null,"service":"sports-academy-sas","method":"GET","url":"/api/v1","ip":"::1"}
+{"timestamp":"2026-05-22 19:43:54","level":"info","message":"GET /api/v1 404 1.175 ms - 45","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:44:46","level":"warn","message":"Route not found","stack":null,"service":"sports-academy-sas","method":"GET","url":"/api/coaches","ip":"::1"}
+{"timestamp":"2026-05-22 19:44:46","level":"info","message":"GET /api/coaches 404 0.791 ms - 45","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:48:57","level":"info","message":"GET /api/v1/admin/test-clearance 401 0.503 ms - 71","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:50:14","level":"info","message":"POST /api/v1/auth/login 422 7.964 ms - 60","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:51:32","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@academy.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:51:32","level":"warn","message":"Login failed: user not found","stack":null,"service":"sports-academy-sas","email":"admin@academy.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:51:32","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:26:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"admin@academy.com","password":"your_secure_password"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 19:51:32","level":"info","message":"POST /api/v1/auth/login 401 36.427 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:53:15","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:53:15","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:53:15","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"admin@test.com","password":"hashedpassword"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 19:53:15","level":"info","message":"POST /api/v1/auth/login 401 9.633 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:53:17","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:53:17","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:53:17","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"admin@test.com","password":"hashedpassword"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 19:53:17","level":"info","message":"POST /api/v1/auth/login 401 4.516 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:57:06","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:57:06","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:57:06","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"admin@test.com","password":"hashedpassword"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 19:57:06","level":"info","message":"POST /api/v1/auth/login 401 11.116 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:57:45","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"superadmin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:57:45","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"superadmin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:57:45","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"superadmin@test.com","password":"123456"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 19:57:45","level":"info","message":"POST /api/v1/auth/login 401 4.852 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 19:57:51","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"superadmin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:57:51","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"superadmin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 19:57:51","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"superadmin@test.com","password":"123456"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 19:57:51","level":"info","message":"POST /api/v1/auth/login 401 4.230 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:12:10","level":"info","message":"POST /api/v1/admin/coaches 401 0.323 ms - 71","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:12:32","level":"info","message":"POST /api/v1/admin/coaches 401 0.221 ms - 71","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:12:34","level":"info","message":"POST /api/v1/admin/coaches 401 0.247 ms - 71","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:15:30","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:15:30","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:15:30","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"admin@test.com","password":"240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 20:15:30","level":"info","message":"POST /api/v1/auth/login 401 9.391 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:20:39","level":"warn","message":"Route not found","stack":null,"service":"sports-academy-sas","method":"GET","url":"/api/v1//test-clearance","ip":"::1"}
+{"timestamp":"2026-05-22 20:20:39","level":"info","message":"GET /api/v1//test-clearance 404 0.783 ms - 45","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:20:48","level":"warn","message":"Route not found","stack":null,"service":"sports-academy-sas","method":"GET","url":"/api/v1/test-clearance","ip":"::1"}
+{"timestamp":"2026-05-22 20:20:48","level":"info","message":"GET /api/v1/test-clearance 404 0.921 ms - 45","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:22:28","level":"info","message":"GET /api/v1/admin/test-clearance 401 0.151 ms - 71","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:28:34","level":"info","message":"GET /api/v1/admin/test-clearance 401 0.152 ms - 71","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:28:35","level":"info","message":"GET /api/v1/admin/test-clearance 401 0.328 ms - 71","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:30:09","level":"warn","message":"SIGINT received, shutting down server","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:30:40","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 20:30:40","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 20:30:47","level":"info","message":"GET /api/v1/admin/test-clearance 200 6.345 ms - 72","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:34:35","level":"info","message":"GET /api/v1/admin/test-clearance 200 0.397 ms - 72","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:36:16","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:36:16","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:36:16","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"admin@test.com","password":"hashedpassword"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 20:36:16","level":"info","message":"POST /api/v1/auth/login 401 37.847 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:36:53","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:36:53","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:36:53","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"admin@test.com","password":"240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 20:36:53","level":"info","message":"POST /api/v1/auth/login 401 7.848 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:36:55","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:36:55","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:36:55","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"admin@test.com","password":"240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 20:36:55","level":"info","message":"POST /api/v1/auth/login 401 4.876 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:37:27","level":"warn","message":"SIGINT received, shutting down server","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:37:31","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 20:37:31","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 20:37:37","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:37:37","level":"warn","message":"Login failed: invalid password","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:37:37","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.service.js:36:21)\n    at async login (file:///E:/jd/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"admin@test.com","password":"240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-22 20:37:37","level":"info","message":"POST /api/v1/auth/login 401 45.744 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:42:45","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:42:45","level":"info","message":"Login successful","stack":null,"service":"sports-academy-sas","user_id":1,"email":"admin@test.com","role":"ADMIN","ip":"::1"}
+{"timestamp":"2026-05-22 20:42:45","level":"info","message":"POST /api/v1/auth/login 200 135.017 ms - 393","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:54:01","level":"error","message":"Unhandled application error","stack":"TypeError: Cannot read properties of undefined (reading 'academy_id')\n    at createCoach (file:///E:/jd/MVC%20(3)/src/modules/admin/admin.controller.js:17:59)\n    at Layer.handleRequest (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\route.js:157:13)\n    at validationErrorHandler (file:///E:/jd/MVC%20(3)/src/middlewares/validation.middleware.js:9:3)\n    at Layer.handleRequest (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\route.js:157:13)\n    at middleware (E:\\jd\\MVC (3)\\node_modules\\express-validator\\lib\\middlewares\\check.js:16:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"Coach Mahindra","email":"mahindra@test.com","phone_number":"+919876543210","specialization":"Cricket","academy_id":1},"params":{},"query":{},"error_message":"Cannot read properties of undefined (reading 'academy_id')"}
+{"timestamp":"2026-05-22 20:54:01","level":"info","message":"POST /api/v1/admin/coaches 500 11.517 ms - 98","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:54:25","level":"error","message":"Unhandled application error","stack":"TypeError: Cannot read properties of undefined (reading 'academy_id')\n    at createCoach (file:///E:/jd/MVC%20(3)/src/modules/admin/admin.controller.js:17:59)\n    at Layer.handleRequest (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\route.js:157:13)\n    at validationErrorHandler (file:///E:/jd/MVC%20(3)/src/middlewares/validation.middleware.js:9:3)\n    at Layer.handleRequest (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\route.js:157:13)\n    at middleware (E:\\jd\\MVC (3)\\node_modules\\express-validator\\lib\\middlewares\\check.js:16:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"Coach Mahindra","email":"mahindra@test.com","phone_number":"+919876543210","specialization":"Cricket","academy_id":8},"params":{},"query":{},"error_message":"Cannot read properties of undefined (reading 'academy_id')"}
+{"timestamp":"2026-05-22 20:54:25","level":"info","message":"POST /api/v1/admin/coaches 500 5.213 ms - 98","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:54:45","level":"error","message":"Unhandled application error","stack":"TypeError: Cannot read properties of undefined (reading 'academy_id')\n    at createCoach (file:///E:/jd/MVC%20(3)/src/modules/admin/admin.controller.js:17:59)\n    at Layer.handleRequest (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\route.js:157:13)\n    at validationErrorHandler (file:///E:/jd/MVC%20(3)/src/middlewares/validation.middleware.js:9:3)\n    at Layer.handleRequest (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\route.js:157:13)\n    at middleware (E:\\jd\\MVC (3)\\node_modules\\express-validator\\lib\\middlewares\\check.js:16:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"Coach Mahindra","email":"mahindra@test.com","phone_number":"+919876543210","specialization":"Cricket","academy_id":8},"params":{},"query":{},"error_message":"Cannot read properties of undefined (reading 'academy_id')"}
+{"timestamp":"2026-05-22 20:54:45","level":"info","message":"POST /api/v1/admin/coaches 500 2.586 ms - 98","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:57:12","level":"error","message":"Unhandled application error","stack":"TypeError: Cannot read properties of undefined (reading 'academy_id')\n    at createCoach (file:///E:/jd/MVC%20(3)/src/modules/admin/admin.controller.js:17:59)\n    at Layer.handleRequest (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\route.js:157:13)\n    at validationErrorHandler (file:///E:/jd/MVC%20(3)/src/middlewares/validation.middleware.js:9:3)\n    at Layer.handleRequest (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\layer.js:152:17)\n    at next (E:\\jd\\MVC (3)\\node_modules\\router\\lib\\route.js:157:13)\n    at middleware (E:\\jd\\MVC (3)\\node_modules\\express-validator\\lib\\middlewares\\check.js:16:13)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"Coach Mahindra","email":"mahindra@test.com","phone_number":"+919876543210","specialization":"Cricket","academy_id":8},"params":{},"query":{},"error_message":"Cannot read properties of undefined (reading 'academy_id')"}
+{"timestamp":"2026-05-22 20:57:12","level":"info","message":"POST /api/v1/admin/coaches 500 3.242 ms - 98","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:57:33","level":"warn","message":"SIGINT received, shutting down server","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:57:36","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 20:57:36","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 20:57:43","level":"info","message":"POST /api/v1/admin/coaches 401 3.580 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:58:45","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 20:58:45","level":"info","message":"Login successful","stack":null,"service":"sports-academy-sas","user_id":1,"email":"admin@test.com","role":"ADMIN","ip":"::1"}
+{"timestamp":"2026-05-22 20:58:45","level":"info","message":"POST /api/v1/auth/login 200 157.040 ms - 393","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 20:59:21","level":"info","message":"POST /api/v1/admin/coaches 401 1.133 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:00:06","level":"info","message":"POST /api/v1/admin/coaches 401 0.313 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:01:00","level":"info","message":"POST /api/v1/admin/coaches 401 0.512 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:01:36","level":"info","message":"POST /api/v1/admin/coaches 401 0.298 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:03:09","level":"warn","message":"SIGINT received, shutting down server","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:03:11","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 21:03:11","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-22 21:03:16","level":"warn","message":"Token validation arithmetic failed","stack":null,"service":"sports-academy-sas","reason":"invalid token"}
+{"timestamp":"2026-05-22 21:03:16","level":"info","message":"POST /api/v1/admin/coaches 401 5.303 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:03:18","level":"warn","message":"Token validation arithmetic failed","stack":null,"service":"sports-academy-sas","reason":"invalid token"}
+{"timestamp":"2026-05-22 21:03:18","level":"info","message":"POST /api/v1/admin/coaches 401 1.683 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:03:27","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 21:03:27","level":"info","message":"Login successful","stack":null,"service":"sports-academy-sas","user_id":1,"email":"admin@test.com","role":"ADMIN","ip":"::1"}
+{"timestamp":"2026-05-22 21:03:27","level":"info","message":"POST /api/v1/auth/login 200 147.158 ms - 393","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:04:07","level":"warn","message":"Token validation arithmetic failed","stack":null,"service":"sports-academy-sas","reason":"invalid token"}
+{"timestamp":"2026-05-22 21:04:07","level":"info","message":"POST /api/v1/admin/coaches 401 1.756 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:04:21","level":"warn","message":"Token validation arithmetic failed","stack":null,"service":"sports-academy-sas","reason":"invalid token"}
+{"timestamp":"2026-05-22 21:04:21","level":"info","message":"POST /api/v1/admin/coaches 401 0.941 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:05:41","level":"warn","message":"Token validation arithmetic failed","stack":null,"service":"sports-academy-sas","reason":"invalid token"}
+{"timestamp":"2026-05-22 21:05:41","level":"info","message":"POST /api/v1/admin/coaches 401 1.450 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:06:02","level":"warn","message":"Token validation arithmetic failed","stack":null,"service":"sports-academy-sas","reason":"invalid token"}
+{"timestamp":"2026-05-22 21:06:02","level":"info","message":"POST /api/v1/admin/coaches 401 0.818 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:06:38","level":"warn","message":"Token validation arithmetic failed","stack":null,"service":"sports-academy-sas","reason":"invalid token"}
+{"timestamp":"2026-05-22 21:06:38","level":"info","message":"POST /api/v1/admin/coaches 401 1.195 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:06:44","level":"info","message":"Login attempt started","stack":null,"service":"sports-academy-sas","email":"admin@test.com","ip":"::1"}
+{"timestamp":"2026-05-22 21:06:45","level":"info","message":"Login successful","stack":null,"service":"sports-academy-sas","user_id":1,"email":"admin@test.com","role":"ADMIN","ip":"::1"}
+{"timestamp":"2026-05-22 21:06:45","level":"info","message":"POST /api/v1/auth/login 200 114.072 ms - 393","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:07:06","level":"warn","message":"Token validation arithmetic failed","stack":null,"service":"sports-academy-sas","reason":"invalid token"}
+{"timestamp":"2026-05-22 21:07:06","level":"info","message":"POST /api/v1/admin/coaches 401 1.079 ms - 67","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:07:17","level":"info","message":"Coach created","stack":null,"service":"sports-academy-sas","coach_id":1,"academy_id":1}
+{"timestamp":"2026-05-22 21:07:17","level":"info","message":"POST /api/v1/admin/coaches 201 32.471 ms - 202","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:08:33","level":"info","message":"GET /api/v1/admin/test-clearance 200 0.710 ms - 57","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-22 21:12:21","level":"info","message":"POST /api/v1/admin/students 401 0.358 ms - 71","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 12:03:45","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-24 12:03:45","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-24 16:17:40","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-24 16:17:40","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":5000}
+{"timestamp":"2026-05-24 16:21:03","level":"warn","message":"SIGINT received, shutting down server","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 16:44:40","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 16:44:40","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 17:01:08","level":"warn","message":"SIGINT received, shutting down server","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:08:05","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 17:08:06","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 17:10:39","level":"info","message":"POST /api/v1/auth/signup 422 21.578 ms - 78","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:10:47","level":"info","message":"Academy signup completed","stack":null,"service":"sports-academy-sas","academy_id":3,"user_id":4,"email":"swainindustrie@gmail.com"}
+{"timestamp":"2026-05-24 17:10:47","level":"info","message":"POST /api/v1/auth/signup 201 332.941 ms - 521","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:10:48","level":"info","message":"GET /api/v1/admin/coaches 200 8.244 ms - 69","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:10:48","level":"info","message":"GET /api/v1/admin/coaches 304 4.575 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:10:54","level":"info","message":"GET /api/v1/admin/sports 200 29.899 ms - 1236","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:10:55","level":"info","message":"GET /api/v1/admin/sports 304 9.784 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:10","level":"info","message":"GET /api/v1/admin/coaches 304 8.362 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:10","level":"info","message":"GET /api/v1/admin/coaches 304 7.881 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:12","level":"info","message":"GET /api/v1/admin/students 200 21.861 ms - 70","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:12","level":"info","message":"GET /api/v1/admin/sports 304 23.918 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:12","level":"info","message":"GET /api/v1/admin/students 304 17.039 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:12","level":"info","message":"GET /api/v1/admin/sports 304 13.993 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:12","level":"info","message":"GET /api/v1/admin/batches 200 59.087 ms - 69","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:12","level":"info","message":"GET /api/v1/admin/batches 304 3.522 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:14","level":"info","message":"GET /api/v1/admin/batches 304 8.429 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:14","level":"info","message":"GET /api/v1/admin/sports 304 7.412 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:14","level":"info","message":"GET /api/v1/admin/coaches 304 12.922 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:14","level":"info","message":"GET /api/v1/admin/batches 304 9.051 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:14","level":"info","message":"GET /api/v1/admin/sports 304 13.466 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:14","level":"info","message":"GET /api/v1/admin/coaches 304 8.383 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:15","level":"info","message":"GET /api/v1/admin/students 304 5.031 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:15","level":"info","message":"GET /api/v1/admin/payments 200 14.941 ms - 70","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:15","level":"info","message":"GET /api/v1/admin/students 304 6.970 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:15","level":"info","message":"GET /api/v1/admin/payments 304 7.899 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:29","level":"info","message":"GET /api/v1/admin/analytics 200 43.267 ms - 220","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:29","level":"info","message":"GET /api/v1/admin/analytics 304 16.010 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:34","level":"info","message":"GET /api/v1/admin/sports 304 6.923 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:34","level":"info","message":"GET /api/v1/admin/sports 304 3.203 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:40","level":"info","message":"GET /api/v1/admin/coaches 304 9.353 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:40","level":"info","message":"GET /api/v1/admin/coaches 304 5.264 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:41","level":"info","message":"GET /api/v1/admin/sports 304 5.401 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:41","level":"info","message":"GET /api/v1/admin/sports 304 6.737 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:11:49","level":"error","message":"Unhandled application error","stack":"Error: Sport already exists in catalog\n    at Module.createCustomSport (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.service.js:83:19)\n    at async createCustomSport (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.controller.js:15:19)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/sports","ip":"::1","body":{"name":"football"},"params":{},"query":{},"error_message":"Sport already exists in catalog"}
+{"timestamp":"2026-05-24 17:11:49","level":"info","message":"POST /api/v1/admin/sports 409 15.638 ms - 71","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:01","level":"info","message":"Sport linked to academy workspace","stack":null,"service":"sports-academy-sas","sport_id":9,"academy_id":3}
+{"timestamp":"2026-05-24 17:12:01","level":"info","message":"POST /api/v1/admin/sports/link 201 32.405 ms - 135","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:01","level":"info","message":"GET /api/v1/admin/sports 304 5.913 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:17","level":"info","message":"Sport linked to academy workspace","stack":null,"service":"sports-academy-sas","sport_id":10,"academy_id":3}
+{"timestamp":"2026-05-24 17:12:17","level":"info","message":"POST /api/v1/admin/sports/link 201 32.759 ms - 137","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:17","level":"info","message":"GET /api/v1/admin/sports 304 5.869 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:20","level":"info","message":"GET /api/v1/admin/coaches 304 4.724 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:20","level":"info","message":"GET /api/v1/admin/coaches 304 7.716 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:21","level":"info","message":"GET /api/v1/admin/sports 304 4.564 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:21","level":"info","message":"GET /api/v1/admin/sports 304 4.837 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:31","level":"info","message":"Custom sport created","stack":null,"service":"sports-academy-sas","sport_id":11,"academy_id":3}
+{"timestamp":"2026-05-24 17:12:31","level":"info","message":"POST /api/v1/admin/sports 201 18.054 ms - 134","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:31","level":"info","message":"GET /api/v1/admin/sports 200 6.372 ms - 1365","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:37","level":"info","message":"GET /api/v1/admin/coaches 304 12.758 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:12:37","level":"info","message":"GET /api/v1/admin/coaches 304 5.597 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:13:12","level":"error","message":"Unhandled application error","stack":"Error: getaddrinfo ENOTFOUND sportsacademy.gmail.com\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"SWAIN coach","email":"swainindustrie123@gmail.com","phone_number":"654123988","specialization":"football"},"params":{},"query":{},"error_message":"getaddrinfo ENOTFOUND sportsacademy.gmail.com"}
+{"timestamp":"2026-05-24 17:13:12","level":"info","message":"POST /api/v1/admin/coaches 500 351.908 ms - 85","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:13:56","level":"error","message":"Unhandled application error","stack":"Error: Coach email already exists in this academy\n    at Module.createCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.service.js:168:19)\n    at async createCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.controller.js:42:19)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"SWAIN coach","email":"swainindustrie123@gmail.com","phone_number":"654123988","specialization":"football"},"params":{},"query":{},"error_message":"Coach email already exists in this academy"}
+{"timestamp":"2026-05-24 17:13:56","level":"info","message":"POST /api/v1/admin/coaches 409 219.981 ms - 82","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:14:06","level":"error","message":"Unhandled application error","stack":"Error: getaddrinfo ENOTFOUND sportsacademy.gmail.com\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"SWAIN coach","email":"swainindustrie1237@gmail.com","phone_number":"654123988","specialization":"football"},"params":{},"query":{},"error_message":"getaddrinfo ENOTFOUND sportsacademy.gmail.com"}
+{"timestamp":"2026-05-24 17:14:06","level":"info","message":"POST /api/v1/admin/coaches 500 301.462 ms - 85","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:14:25","level":"warn","message":"SIGINT received, shutting down server","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:14:30","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 17:14:30","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 17:14:34","level":"error","message":"Unhandled application error","stack":"Error: Coach email already exists in this academy\n    at Module.createCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.service.js:168:19)\n    at async createCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.controller.js:42:19)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"SWAIN coach","email":"swainindustrie1237@gmail.com","phone_number":"654123988","specialization":"football"},"params":{},"query":{},"error_message":"Coach email already exists in this academy"}
+{"timestamp":"2026-05-24 17:14:34","level":"info","message":"POST /api/v1/admin/coaches 409 272.506 ms - 82","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:14:42","level":"error","message":"Unhandled application error","stack":"Error: queryA EBADNAME aryankumarswain99@gmail.com\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/callback_resolver:45:19)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"SWAIN coach","email":"swainindustrie128837@gmail.com","phone_number":"654123988","specialization":"football"},"params":{},"query":{},"error_message":"queryA EBADNAME aryankumarswain99@gmail.com"}
+{"timestamp":"2026-05-24 17:14:42","level":"info","message":"POST /api/v1/admin/coaches 500 218.030 ms - 83","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:16:15","level":"error","message":"Unhandled application error","stack":"Error: Coach email already exists in this academy\n    at Module.createCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.service.js:168:19)\n    at async createCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.controller.js:42:19)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"SWAIN coach","email":"swainindustrie128837@gmail.com","phone_number":"654123988","specialization":"football"},"params":{},"query":{},"error_message":"Coach email already exists in this academy"}
+{"timestamp":"2026-05-24 17:16:15","level":"info","message":"POST /api/v1/admin/coaches 409 161.811 ms - 82","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:16:21","level":"error","message":"Unhandled application error","stack":"Error: queryA EBADNAME aryankumarswain99@gmail.com\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/callback_resolver:45:19)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"SWAIN coach","email":"swainindustrie12338837@gmail.com","phone_number":"654123988","specialization":"football"},"params":{},"query":{},"error_message":"queryA EBADNAME aryankumarswain99@gmail.com"}
+{"timestamp":"2026-05-24 17:16:21","level":"info","message":"POST /api/v1/admin/coaches 500 188.329 ms - 83","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:16:29","level":"warn","message":"SIGINT received, shutting down server","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:16:33","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 17:16:33","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 17:16:36","level":"error","message":"Unhandled application error","stack":"Error: Coach email already exists in this academy\n    at Module.createCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.service.js:168:19)\n    at async createCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/admin/admin.controller.js:42:19)","service":"sports-academy-sas","method":"POST","url":"/api/v1/admin/coaches","ip":"::1","body":{"name":"SWAIN coach","email":"swainindustrie12338837@gmail.com","phone_number":"654123988","specialization":"football"},"params":{},"query":{},"error_message":"Coach email already exists in this academy"}
+{"timestamp":"2026-05-24 17:16:36","level":"info","message":"POST /api/v1/admin/coaches 409 208.272 ms - 82","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:17:00","level":"info","message":"Email dispatched","stack":null,"service":"sports-academy-sas","to":"aryankumarswain6786@gmail.com","subject":"Welcome to SAMS — Your Coach Portal Credentials","messageId":"<27dc013e-41fb-512f-b5b5-07756f593749@gmail.com>"}
+{"timestamp":"2026-05-24 17:17:00","level":"info","message":"Coach provisioned with credentials email","stack":null,"service":"sports-academy-sas","coach_id":108,"academy_id":3}
+{"timestamp":"2026-05-24 17:17:00","level":"info","message":"POST /api/v1/admin/coaches 201 3883.354 ms - 232","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:17:00","level":"info","message":"GET /api/v1/admin/coaches 200 31.940 ms - 1654","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:18:49","level":"info","message":"GET /api/v1/admin/students 304 20.439 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:18:49","level":"info","message":"GET /api/v1/admin/sports 304 26.410 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:18:49","level":"info","message":"GET /api/v1/admin/students 304 21.292 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:18:49","level":"info","message":"GET /api/v1/admin/batches 304 50.145 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:18:49","level":"info","message":"GET /api/v1/admin/sports 304 13.822 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:18:49","level":"info","message":"GET /api/v1/admin/batches 304 14.524 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:18:50","level":"info","message":"GET /api/v1/admin/coaches 304 8.617 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:18:50","level":"info","message":"GET /api/v1/admin/coaches 304 11.522 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:03","level":"info","message":"GET /api/v1/admin/students 304 10.323 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:03","level":"info","message":"GET /api/v1/admin/sports 304 16.480 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:03","level":"info","message":"GET /api/v1/admin/batches 304 26.435 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:03","level":"info","message":"GET /api/v1/admin/students 304 25.547 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:03","level":"info","message":"GET /api/v1/admin/sports 304 7.608 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:03","level":"info","message":"GET /api/v1/admin/batches 304 7.966 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:40","level":"info","message":"GET /api/v1/admin/batches 304 4.596 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:40","level":"info","message":"GET /api/v1/admin/coaches 304 8.481 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:40","level":"info","message":"GET /api/v1/admin/sports 304 13.648 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:40","level":"info","message":"GET /api/v1/admin/batches 304 9.716 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:40","level":"info","message":"GET /api/v1/admin/coaches 304 10.133 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:19:40","level":"info","message":"GET /api/v1/admin/sports 304 4.008 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:02","level":"info","message":"GET /api/v1/admin/coaches 304 15.320 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:02","level":"info","message":"GET /api/v1/admin/coaches 304 10.398 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:08","level":"info","message":"GET /api/v1/admin/batches 304 17.883 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:08","level":"info","message":"GET /api/v1/admin/sports 304 13.061 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:08","level":"info","message":"GET /api/v1/admin/coaches 304 27.001 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:08","level":"info","message":"GET /api/v1/admin/batches 304 29.425 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:08","level":"info","message":"GET /api/v1/admin/sports 304 25.112 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:08","level":"info","message":"GET /api/v1/admin/coaches 304 8.733 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:11","level":"info","message":"GET /api/v1/admin/coaches 304 4.872 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:11","level":"info","message":"GET /api/v1/admin/coaches 304 13.583 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:15","level":"info","message":"Coach soft-deleted","stack":null,"service":"sports-academy-sas","coach_id":"107","academy_id":3}
+{"timestamp":"2026-05-24 17:20:15","level":"info","message":"DELETE /api/v1/admin/coaches/107 200 87.336 ms - 66","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:15","level":"info","message":"GET /api/v1/admin/coaches 200 23.813 ms - 1334","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:44","level":"info","message":"Coach soft-deleted","stack":null,"service":"sports-academy-sas","coach_id":"106","academy_id":3}
+{"timestamp":"2026-05-24 17:20:44","level":"info","message":"DELETE /api/v1/admin/coaches/106 200 19.123 ms - 66","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:44","level":"info","message":"GET /api/v1/admin/coaches 200 6.771 ms - 1016","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:47","level":"info","message":"Coach soft-deleted","stack":null,"service":"sports-academy-sas","coach_id":"105","academy_id":3}
+{"timestamp":"2026-05-24 17:20:47","level":"info","message":"DELETE /api/v1/admin/coaches/105 200 25.920 ms - 66","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:47","level":"info","message":"GET /api/v1/admin/coaches 200 13.123 ms - 700","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:52","level":"info","message":"Coach soft-deleted","stack":null,"service":"sports-academy-sas","coach_id":"104","academy_id":3}
+{"timestamp":"2026-05-24 17:20:52","level":"info","message":"DELETE /api/v1/admin/coaches/104 200 27.207 ms - 66","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:52","level":"info","message":"GET /api/v1/admin/coaches 200 11.665 ms - 385","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:54","level":"info","message":"GET /api/v1/admin/students 304 6.303 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:54","level":"info","message":"GET /api/v1/admin/payments 304 12.909 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:54","level":"info","message":"GET /api/v1/admin/students 304 12.058 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:20:54","level":"info","message":"GET /api/v1/admin/payments 304 17.698 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:02","level":"info","message":"GET /api/v1/admin/batches 304 7.268 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:02","level":"info","message":"GET /api/v1/admin/coaches 304 11.635 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:02","level":"info","message":"GET /api/v1/admin/sports 304 12.786 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:02","level":"info","message":"GET /api/v1/admin/batches 304 12.889 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:02","level":"info","message":"GET /api/v1/admin/sports 304 11.304 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:02","level":"info","message":"GET /api/v1/admin/coaches 304 31.998 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:29","level":"info","message":"Batch created","stack":null,"service":"sports-academy-sas","batch_id":204,"academy_id":3}
+{"timestamp":"2026-05-24 17:21:29","level":"info","message":"POST /api/v1/admin/batches 201 31.014 ms - 545","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:29","level":"info","message":"GET /api/v1/admin/batches 200 25.071 ms - 565","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:29","level":"info","message":"GET /api/v1/admin/coaches 200 28.505 ms - 555","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:29","level":"info","message":"GET /api/v1/admin/sports 304 20.924 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:33","level":"info","message":"GET /api/v1/admin/students 304 10.245 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:33","level":"info","message":"GET /api/v1/admin/sports 304 12.595 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:33","level":"info","message":"GET /api/v1/admin/batches 304 10.513 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:33","level":"info","message":"GET /api/v1/admin/students 304 6.722 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:33","level":"info","message":"GET /api/v1/admin/sports 304 8.019 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:33","level":"info","message":"GET /api/v1/admin/batches 304 8.620 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:53","level":"info","message":"Student created","stack":null,"service":"sports-academy-sas","student_id":1011,"academy_id":3}
+{"timestamp":"2026-05-24 17:21:53","level":"info","message":"POST /api/v1/admin/students 201 21.396 ms - 519","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:53","level":"info","message":"GET /api/v1/admin/students 200 15.591 ms - 538","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:53","level":"info","message":"GET /api/v1/admin/batches 200 12.727 ms - 840","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:53","level":"info","message":"GET /api/v1/admin/sports 304 22.914 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:56","level":"info","message":"GET /api/v1/admin/sports 304 5.424 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:56","level":"info","message":"GET /api/v1/admin/batches 304 15.769 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:56","level":"info","message":"GET /api/v1/admin/coaches 304 15.391 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:56","level":"info","message":"GET /api/v1/admin/sports 304 6.467 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:56","level":"info","message":"GET /api/v1/admin/batches 304 6.959 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:56","level":"info","message":"GET /api/v1/admin/coaches 304 7.835 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:58","level":"info","message":"GET /api/v1/admin/payments 304 5.267 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:58","level":"info","message":"GET /api/v1/admin/students 304 7.232 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:58","level":"info","message":"GET /api/v1/admin/payments 304 3.493 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:21:58","level":"info","message":"GET /api/v1/admin/students 304 6.970 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:13","level":"info","message":"POST /api/v1/admin/payments 201 47.346 ms - 211","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:13","level":"info","message":"GET /api/v1/admin/payments 200 15.849 ms - 500","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:13","level":"info","message":"GET /api/v1/admin/students 200 8.374 ms - 682","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:23","level":"info","message":"GET /api/v1/admin/analytics 200 30.807 ms - 226","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:23","level":"info","message":"GET /api/v1/admin/analytics 304 20.603 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:28","level":"info","message":"GET /api/v1/admin/payments 304 7.137 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:28","level":"info","message":"GET /api/v1/admin/students 304 10.540 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:28","level":"info","message":"GET /api/v1/admin/payments 304 10.219 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:28","level":"info","message":"GET /api/v1/admin/students 304 25.018 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:29","level":"info","message":"GET /api/v1/admin/sports 304 2.621 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:29","level":"info","message":"GET /api/v1/admin/batches 200 7.759 ms - 838","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:29","level":"info","message":"GET /api/v1/admin/coaches 304 9.822 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:29","level":"info","message":"GET /api/v1/admin/sports 304 3.665 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:29","level":"info","message":"GET /api/v1/admin/batches 304 9.018 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:29","level":"info","message":"GET /api/v1/admin/coaches 304 8.163 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:31","level":"info","message":"GET /api/v1/admin/sports 304 6.656 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:31","level":"info","message":"GET /api/v1/admin/students 304 17.294 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:31","level":"info","message":"GET /api/v1/admin/batches 304 14.495 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:31","level":"info","message":"GET /api/v1/admin/sports 304 11.604 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:31","level":"info","message":"GET /api/v1/admin/batches 304 12.333 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:31","level":"info","message":"GET /api/v1/admin/students 304 18.835 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:33","level":"info","message":"GET /api/v1/admin/coaches 304 7.902 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:33","level":"info","message":"GET /api/v1/admin/coaches 304 7.221 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:35","level":"info","message":"GET /api/v1/admin/sports 304 3.234 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:22:35","level":"info","message":"GET /api/v1/admin/sports 304 5.200 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:23:24","level":"info","message":"Admin login attempt","stack":null,"service":"sports-academy-sas","email":"swainindustrie@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:23:25","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.service.js:113:19)\n    at async login (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.controller.js:17:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"swainindustrie@gmail.com","password":"123456"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-24 17:23:25","level":"info","message":"POST /api/v1/auth/login 401 188.632 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:23:34","level":"info","message":"Admin login attempt","stack":null,"service":"sports-academy-sas","email":"aryannn.ks@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:23:34","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.service.js:105:19)\n    at async login (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.controller.js:17:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"aryannn.ks@gmail.com","password":"123456"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-24 17:23:34","level":"info","message":"POST /api/v1/auth/login 401 4.409 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:23:41","level":"info","message":"Admin login attempt","stack":null,"service":"sports-academy-sas","email":"aryannn.ks@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:23:41","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.service.js:105:19)\n    at async login (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.controller.js:17:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"aryannn.ks@gmail.com","password":"123456"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-24 17:23:41","level":"info","message":"POST /api/v1/auth/login 401 10.440 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:23:49","level":"info","message":"Admin login attempt","stack":null,"service":"sports-academy-sas","email":"aryankumarswain99@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:23:49","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.service.js:105:19)\n    at async login (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.controller.js:17:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"aryankumarswain99@gmail.com","password":"123456"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-24 17:23:49","level":"info","message":"POST /api/v1/auth/login 401 24.681 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:23:55","level":"info","message":"Admin login attempt","stack":null,"service":"sports-academy-sas","email":"swainindustrie@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:23:55","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginUser (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.service.js:113:19)\n    at async login (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.controller.js:17:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/login","ip":"::1","body":{"email":"swainindustrie@gmail.com","password":"123456"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-24 17:23:55","level":"info","message":"POST /api/v1/auth/login 401 207.736 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:24:28","level":"error","message":"Unhandled application error","stack":"Error: Email already registered\n    at Module.signupAcademy (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.service.js:21:19)\n    at async signup (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.controller.js:6:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/signup","ip":"::1","body":{"name":"SWAIN","email":"swainindustrie@gmail.com","password":"123456","academy_name":"jd sports","subscription_plan":"basic"},"params":{},"query":{},"error_message":"Email already registered"}
+{"timestamp":"2026-05-24 17:24:28","level":"info","message":"POST /api/v1/auth/signup 409 9.066 ms - 64","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:28:35","level":"info","message":"Coach login attempt","stack":null,"service":"sports-academy-sas","email":"aryankumarswain99@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:28:35","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.service.js:153:19)\n    at async coachLogin (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.controller.js:33:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/coach/login","ip":"::1","body":{"email":"aryankumarswain99@gmail.com","password":"QKsDSVNY"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-24 17:28:35","level":"info","message":"POST /api/v1/auth/coach/login 401 14.455 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:29:07","level":"info","message":"Coach login attempt","stack":null,"service":"sports-academy-sas","email":"aryankumarswain99@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:29:07","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.service.js:153:19)\n    at async coachLogin (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.controller.js:33:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/coach/login","ip":"::1","body":{"email":"aryankumarswain99@gmail.com","password":"QKsDSVNY"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-24 17:29:07","level":"info","message":"POST /api/v1/auth/coach/login 401 18.377 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:29:08","level":"info","message":"Coach login attempt","stack":null,"service":"sports-academy-sas","email":"aryankumarswain99@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:29:08","level":"error","message":"Unhandled application error","stack":"Error: Invalid email or password\n    at Module.loginCoach (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.service.js:153:19)\n    at async coachLogin (file:///E:/jd/SAMS/MVC%20(3)/src/modules/auth/auth.controller.js:33:20)","service":"sports-academy-sas","method":"POST","url":"/api/v1/auth/coach/login","ip":"::1","body":{"email":"aryankumarswain99@gmail.com","password":"QKsDSVNY"},"params":{},"query":{},"error_message":"Invalid email or password"}
+{"timestamp":"2026-05-24 17:29:08","level":"info","message":"POST /api/v1/auth/coach/login 401 15.092 ms - 65","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:32:52","level":"info","message":"Academy signup completed","stack":null,"service":"sports-academy-sas","academy_id":4,"user_id":5,"email":"aryannn.ks@gmail.com"}
+{"timestamp":"2026-05-24 17:32:52","level":"info","message":"POST /api/v1/auth/signup 201 147.186 ms - 511","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:32:53","level":"info","message":"GET /api/v1/admin/coaches 200 3.370 ms - 69","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:32:53","level":"info","message":"GET /api/v1/admin/coaches 304 2.940 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:09","level":"info","message":"GET /api/v1/admin/sports 200 13.318 ms - 1236","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:10","level":"info","message":"GET /api/v1/admin/sports 304 5.454 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:17","level":"info","message":"GET /api/v1/admin/coaches 304 4.387 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:17","level":"info","message":"GET /api/v1/admin/coaches 304 6.590 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:45","level":"info","message":"Email dispatched","stack":null,"service":"sports-academy-sas","to":"swainindustrie@gmail.com","subject":"Welcome to SAMS — Your Coach Portal Credentials","messageId":"<8ff710c2-362c-ee23-2c74-d1e391b1e446@gmail.com>"}
+{"timestamp":"2026-05-24 17:33:45","level":"info","message":"Coach provisioned with credentials email","stack":null,"service":"sports-academy-sas","coach_id":109,"academy_id":4}
+{"timestamp":"2026-05-24 17:33:45","level":"info","message":"POST /api/v1/admin/coaches 201 4222.484 ms - 222","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:45","level":"info","message":"GET /api/v1/admin/coaches 200 14.193 ms - 375","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:48","level":"info","message":"GET /api/v1/admin/students 200 9.946 ms - 70","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:48","level":"info","message":"GET /api/v1/admin/sports 304 18.396 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:48","level":"info","message":"GET /api/v1/admin/batches 200 19.014 ms - 69","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:48","level":"info","message":"GET /api/v1/admin/students 304 11.277 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:48","level":"info","message":"GET /api/v1/admin/sports 304 13.418 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:33:48","level":"info","message":"GET /api/v1/admin/batches 304 10.502 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:28","level":"info","message":"GET /api/v1/admin/batches 304 6.539 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:28","level":"info","message":"GET /api/v1/admin/coaches 304 12.381 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:28","level":"info","message":"GET /api/v1/admin/sports 304 15.803 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:28","level":"info","message":"GET /api/v1/admin/batches 304 9.799 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:28","level":"info","message":"GET /api/v1/admin/coaches 304 21.201 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:28","level":"info","message":"GET /api/v1/admin/sports 304 3.257 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:59","level":"info","message":"Batch created","stack":null,"service":"sports-academy-sas","batch_id":205,"academy_id":4}
+{"timestamp":"2026-05-24 17:34:59","level":"info","message":"POST /api/v1/admin/batches 201 28.077 ms - 535","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:59","level":"info","message":"GET /api/v1/admin/batches 200 32.414 ms - 555","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:59","level":"info","message":"GET /api/v1/admin/coaches 200 36.943 ms - 545","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:34:59","level":"info","message":"GET /api/v1/admin/sports 304 37.650 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:01","level":"info","message":"GET /api/v1/admin/payments 200 7.228 ms - 70","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:01","level":"info","message":"GET /api/v1/admin/students 304 8.123 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:01","level":"info","message":"GET /api/v1/admin/payments 304 13.841 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:01","level":"info","message":"GET /api/v1/admin/students 304 29.649 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:05","level":"info","message":"GET /api/v1/admin/students 304 9.574 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:05","level":"info","message":"GET /api/v1/admin/sports 304 9.737 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:05","level":"info","message":"GET /api/v1/admin/batches 304 12.560 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:05","level":"info","message":"GET /api/v1/admin/students 304 10.684 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:05","level":"info","message":"GET /api/v1/admin/sports 304 23.891 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:05","level":"info","message":"GET /api/v1/admin/batches 304 23.471 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:25","level":"info","message":"Student created","stack":null,"service":"sports-academy-sas","student_id":1012,"academy_id":4}
+{"timestamp":"2026-05-24 17:35:25","level":"info","message":"POST /api/v1/admin/students 201 28.026 ms - 507","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:26","level":"info","message":"GET /api/v1/admin/sports 304 9.176 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:26","level":"info","message":"GET /api/v1/admin/students 200 16.385 ms - 526","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:26","level":"info","message":"GET /api/v1/admin/batches 200 14.342 ms - 818","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:28","level":"info","message":"GET /api/v1/admin/batches 304 16.492 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:28","level":"info","message":"GET /api/v1/admin/coaches 304 13.221 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:28","level":"info","message":"GET /api/v1/admin/sports 304 9.799 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:28","level":"info","message":"GET /api/v1/admin/batches 304 16.266 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:28","level":"info","message":"GET /api/v1/admin/coaches 304 29.264 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:28","level":"info","message":"GET /api/v1/admin/sports 304 15.447 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:39","level":"info","message":"Batch created","stack":null,"service":"sports-academy-sas","batch_id":206,"academy_id":4}
+{"timestamp":"2026-05-24 17:35:39","level":"info","message":"POST /api/v1/admin/batches 201 21.794 ms - 535","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:39","level":"info","message":"GET /api/v1/admin/batches 200 21.891 ms - 1305","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:39","level":"info","message":"GET /api/v1/admin/coaches 200 23.132 ms - 716","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:35:39","level":"info","message":"GET /api/v1/admin/sports 304 29.351 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:36:11","level":"info","message":"GET /api/v1/admin/coaches 304 4.406 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:36:11","level":"info","message":"GET /api/v1/admin/coaches 304 4.313 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:36:13","level":"info","message":"GET /api/v1/admin/sports 304 7.056 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:36:13","level":"info","message":"GET /api/v1/admin/batches 304 14.083 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:36:13","level":"info","message":"GET /api/v1/admin/coaches 304 29.264 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:36:13","level":"info","message":"GET /api/v1/admin/sports 304 11.899 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:36:13","level":"info","message":"GET /api/v1/admin/batches 304 21.331 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:36:13","level":"info","message":"GET /api/v1/admin/coaches 304 5.903 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:08","level":"info","message":"GET /api/v1/admin/payments 304 7.552 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:08","level":"info","message":"GET /api/v1/admin/students 304 13.393 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:08","level":"info","message":"GET /api/v1/admin/payments 304 8.267 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:08","level":"info","message":"GET /api/v1/admin/students 304 13.721 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:10","level":"info","message":"GET /api/v1/admin/students 304 10.907 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:10","level":"info","message":"GET /api/v1/admin/sports 304 8.627 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:10","level":"info","message":"GET /api/v1/admin/batches 304 23.566 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:10","level":"info","message":"GET /api/v1/admin/students 304 41.839 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:10","level":"info","message":"GET /api/v1/admin/sports 304 9.108 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:10","level":"info","message":"GET /api/v1/admin/batches 304 8.184 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:12","level":"info","message":"GET /api/v1/admin/coaches 304 7.704 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:12","level":"info","message":"GET /api/v1/admin/coaches 304 6.349 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:15","level":"info","message":"GET /api/v1/admin/sports 304 4.262 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:15","level":"info","message":"GET /api/v1/admin/students 304 8.339 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:15","level":"info","message":"GET /api/v1/admin/batches 304 8.607 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:15","level":"info","message":"GET /api/v1/admin/sports 304 3.163 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:15","level":"info","message":"GET /api/v1/admin/students 304 8.926 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:15","level":"info","message":"GET /api/v1/admin/batches 304 6.581 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:19","level":"info","message":"GET /api/v1/admin/batches 304 8.413 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:19","level":"info","message":"GET /api/v1/admin/sports 304 11.855 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:19","level":"info","message":"GET /api/v1/admin/coaches 304 16.870 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:19","level":"info","message":"GET /api/v1/admin/batches 304 18.675 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:19","level":"info","message":"GET /api/v1/admin/sports 304 6.173 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:19","level":"info","message":"GET /api/v1/admin/coaches 304 10.249 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:21","level":"info","message":"GET /api/v1/admin/analytics 200 19.532 ms - 220","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:21","level":"info","message":"GET /api/v1/admin/analytics 304 9.997 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:23","level":"info","message":"GET /api/v1/admin/payments 304 6.252 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:23","level":"info","message":"GET /api/v1/admin/students 304 10.003 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:24","level":"info","message":"GET /api/v1/admin/payments 304 15.453 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:24","level":"info","message":"GET /api/v1/admin/students 304 14.729 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:26","level":"info","message":"GET /api/v1/admin/batches 304 11.689 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:26","level":"info","message":"GET /api/v1/admin/coaches 304 12.212 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:26","level":"info","message":"GET /api/v1/admin/sports 304 14.464 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:26","level":"info","message":"GET /api/v1/admin/batches 304 23.381 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:26","level":"info","message":"GET /api/v1/admin/coaches 304 32.174 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:26","level":"info","message":"GET /api/v1/admin/sports 304 6.137 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:44","level":"info","message":"GET /api/v1/admin/coaches 304 8.520 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:37:44","level":"info","message":"GET /api/v1/admin/coaches 304 9.507 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:07","level":"info","message":"Email dispatched","stack":null,"service":"sports-academy-sas","to":"firstid541@gmail.com","subject":"Welcome to SAMS — Your Coach Portal Credentials","messageId":"<6ac0314d-3ce6-f1a5-d480-183b135bfbc5@gmail.com>"}
+{"timestamp":"2026-05-24 17:39:07","level":"info","message":"Coach provisioned with credentials email","stack":null,"service":"sports-academy-sas","coach_id":110,"academy_id":4}
+{"timestamp":"2026-05-24 17:39:07","level":"info","message":"POST /api/v1/admin/coaches 201 3922.697 ms - 218","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:07","level":"info","message":"GET /api/v1/admin/coaches 200 14.309 ms - 1019","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:19","level":"info","message":"GET /api/v1/admin/students 304 14.257 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:19","level":"info","message":"GET /api/v1/admin/sports 304 20.123 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:19","level":"info","message":"GET /api/v1/admin/batches 304 30.002 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:19","level":"info","message":"GET /api/v1/admin/students 304 29.014 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:19","level":"info","message":"GET /api/v1/admin/sports 304 42.971 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:19","level":"info","message":"GET /api/v1/admin/batches 304 20.175 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:21","level":"info","message":"GET /api/v1/admin/batches 304 9.954 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:21","level":"info","message":"GET /api/v1/admin/sports 304 8.500 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:21","level":"info","message":"GET /api/v1/admin/coaches 304 14.361 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:21","level":"info","message":"GET /api/v1/admin/batches 304 30.777 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:21","level":"info","message":"GET /api/v1/admin/sports 304 27.496 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:21","level":"info","message":"GET /api/v1/admin/coaches 304 28.962 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:25","level":"info","message":"GET /api/v1/admin/payments 304 7.687 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:25","level":"info","message":"GET /api/v1/admin/students 304 10.949 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:25","level":"info","message":"GET /api/v1/admin/payments 304 14.869 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:25","level":"info","message":"GET /api/v1/admin/students 304 22.328 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:39","level":"info","message":"GET /api/v1/admin/batches 304 13.457 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:39","level":"info","message":"GET /api/v1/admin/sports 304 8.393 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:39","level":"info","message":"GET /api/v1/admin/coaches 304 14.708 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:39","level":"info","message":"GET /api/v1/admin/batches 304 26.295 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:39","level":"info","message":"GET /api/v1/admin/sports 304 22.139 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:39","level":"info","message":"GET /api/v1/admin/coaches 304 9.128 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:51","level":"info","message":"GET /api/v1/admin/sports 304 4.697 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:51","level":"info","message":"GET /api/v1/admin/batches 304 9.035 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:51","level":"info","message":"GET /api/v1/admin/students 304 22.400 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:51","level":"info","message":"GET /api/v1/admin/sports 304 27.299 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:51","level":"info","message":"GET /api/v1/admin/batches 304 32.537 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:51","level":"info","message":"GET /api/v1/admin/students 304 8.775 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:54","level":"info","message":"GET /api/v1/admin/coaches 304 9.709 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:54","level":"info","message":"GET /api/v1/admin/coaches 304 11.505 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:59","level":"info","message":"GET /api/v1/admin/sports 304 3.956 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:39:59","level":"info","message":"GET /api/v1/admin/sports 304 4.858 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:40:11","level":"info","message":"GET /api/v1/admin/payments 304 5.883 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:40:11","level":"info","message":"GET /api/v1/admin/students 304 10.796 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:40:11","level":"info","message":"GET /api/v1/admin/payments 304 10.173 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:40:11","level":"info","message":"GET /api/v1/admin/students 304 18.711 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:40:26","level":"info","message":"GET /api/v1/admin/analytics 200 27.585 ms - 220","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:40:26","level":"info","message":"GET /api/v1/admin/analytics 304 12.471 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:41:02","level":"info","message":"Admin login attempt","stack":null,"service":"sports-academy-sas","email":"aryannn.ks@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:41:02","level":"info","message":"Admin login successful","stack":null,"service":"sports-academy-sas","user_id":5,"email":"aryannn.ks@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:41:02","level":"info","message":"POST /api/v1/auth/login 200 196.284 ms - 407","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:41:03","level":"info","message":"GET /api/v1/admin/coaches 304 5.844 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:41:03","level":"info","message":"GET /api/v1/admin/coaches 304 5.792 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:42:40","level":"info","message":"Coach login attempt","stack":null,"service":"sports-academy-sas","email":"firstid541@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:42:40","level":"info","message":"Coach login successful","stack":null,"service":"sports-academy-sas","coach_id":110,"email":"firstid541@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:42:40","level":"info","message":"POST /api/v1/auth/coach/login 200 211.807 ms - 421","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:42:41","level":"info","message":"GET /api/v1/coach/batches 200 5.629 ms - 78","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:42:41","level":"info","message":"GET /api/v1/coach/batches 304 5.721 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:43:43","level":"info","message":"Admin login attempt","stack":null,"service":"sports-academy-sas","email":"aryannn.ks@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:43:43","level":"info","message":"Admin login successful","stack":null,"service":"sports-academy-sas","user_id":5,"email":"aryannn.ks@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:43:43","level":"info","message":"POST /api/v1/auth/login 200 206.737 ms - 407","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:43:44","level":"info","message":"GET /api/v1/admin/coaches 304 4.590 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:43:44","level":"info","message":"GET /api/v1/admin/coaches 304 3.982 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:43:51","level":"info","message":"GET /api/v1/admin/batches 304 7.569 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:43:51","level":"info","message":"GET /api/v1/admin/sports 304 9.174 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:43:51","level":"info","message":"GET /api/v1/admin/coaches 304 19.275 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:43:51","level":"info","message":"GET /api/v1/admin/sports 304 8.701 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:43:51","level":"info","message":"GET /api/v1/admin/batches 304 13.105 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:43:51","level":"info","message":"GET /api/v1/admin/coaches 304 5.297 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:15","level":"info","message":"GET /api/v1/admin/coaches 304 11.036 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:15","level":"info","message":"GET /api/v1/admin/coaches 304 12.865 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:44","level":"info","message":"GET /api/v1/admin/batches 304 13.197 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:44","level":"info","message":"GET /api/v1/admin/coaches 304 16.059 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:44","level":"info","message":"GET /api/v1/admin/sports 304 18.707 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:44","level":"info","message":"GET /api/v1/admin/batches 304 22.686 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:44","level":"info","message":"GET /api/v1/admin/coaches 304 19.147 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:44","level":"info","message":"GET /api/v1/admin/sports 304 15.561 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:47","level":"info","message":"GET /api/v1/admin/coaches 304 5.346 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:47","level":"info","message":"GET /api/v1/admin/coaches 304 7.324 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:50","level":"info","message":"Coach soft-deleted","stack":null,"service":"sports-academy-sas","coach_id":"109","academy_id":4}
+{"timestamp":"2026-05-24 17:44:50","level":"info","message":"DELETE /api/v1/admin/coaches/109 200 25.485 ms - 66","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:50","level":"info","message":"GET /api/v1/admin/coaches 200 8.238 ms - 371","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:52","level":"info","message":"GET /api/v1/admin/payments 304 6.339 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:52","level":"info","message":"GET /api/v1/admin/students 304 11.688 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:52","level":"info","message":"GET /api/v1/admin/payments 304 9.475 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:44:52","level":"info","message":"GET /api/v1/admin/students 304 17.580 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:00","level":"info","message":"GET /api/v1/admin/students 304 10.712 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:00","level":"info","message":"GET /api/v1/admin/sports 304 10.736 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:00","level":"info","message":"GET /api/v1/admin/batches 200 18.916 ms - 727","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:01","level":"info","message":"GET /api/v1/admin/students 304 33.785 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:01","level":"info","message":"GET /api/v1/admin/sports 304 81.510 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:01","level":"info","message":"GET /api/v1/admin/batches 304 24.334 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:03","level":"info","message":"GET /api/v1/admin/batches 304 14.586 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:03","level":"info","message":"GET /api/v1/admin/sports 304 8.207 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:03","level":"info","message":"GET /api/v1/admin/coaches 304 13.328 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:03","level":"info","message":"GET /api/v1/admin/sports 304 21.775 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:03","level":"info","message":"GET /api/v1/admin/batches 304 33.467 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:03","level":"info","message":"GET /api/v1/admin/coaches 304 16.485 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:19","level":"info","message":"Batch created","stack":null,"service":"sports-academy-sas","batch_id":207,"academy_id":4}
+{"timestamp":"2026-05-24 17:45:19","level":"info","message":"POST /api/v1/admin/batches 201 24.881 ms - 531","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:19","level":"info","message":"GET /api/v1/admin/coaches 200 11.945 ms - 541","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:19","level":"info","message":"GET /api/v1/admin/batches 200 28.574 ms - 1210","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:19","level":"info","message":"GET /api/v1/admin/sports 304 7.030 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:29","level":"info","message":"GET /api/v1/coach/batches 200 6.135 ms - 262","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:29","level":"info","message":"GET /api/v1/coach/batches 304 3.959 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:40","level":"info","message":"GET /api/v1/admin/sports 304 6.756 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:40","level":"info","message":"GET /api/v1/admin/students 304 18.675 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:40","level":"info","message":"GET /api/v1/admin/batches 304 20.104 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:40","level":"info","message":"GET /api/v1/admin/sports 304 7.229 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:40","level":"info","message":"GET /api/v1/admin/students 304 27.748 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:45:40","level":"info","message":"GET /api/v1/admin/batches 304 19.693 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:47:27","level":"info","message":"Student created","stack":null,"service":"sports-academy-sas","student_id":1013,"academy_id":4}
+{"timestamp":"2026-05-24 17:47:27","level":"info","message":"POST /api/v1/admin/students 201 21.068 ms - 517","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:47:27","level":"info","message":"GET /api/v1/admin/students 200 34.934 ms - 993","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:47:27","level":"info","message":"GET /api/v1/admin/sports 304 26.199 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:47:27","level":"info","message":"GET /api/v1/admin/batches 200 35.964 ms - 1483","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:47:35","level":"info","message":"GET /api/v1/coach/batches 200 5.290 ms - 535","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:47:35","level":"info","message":"GET /api/v1/coach/batches 304 4.538 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:49:19","level":"info","message":"Email dispatched","stack":null,"service":"sports-academy-sas","to":"idsecond616@gmail.com","subject":"Attendance Update — Pranav Kumar Swain","messageId":"<0cb2f9bb-1abc-1b11-fb26-dcde0e73b5e0@gmail.com>"}
+{"timestamp":"2026-05-24 17:49:19","level":"info","message":"Student attendance marked and parent notifications dispatched","stack":null,"service":"sports-academy-sas","coach_id":110,"batch_id":207,"records_count":1}
+{"timestamp":"2026-05-24 17:49:19","level":"info","message":"POST /api/v1/coach/attendance 201 3556.924 ms - 381","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:58:34","level":"info","message":"Admin login attempt","stack":null,"service":"sports-academy-sas","email":"aryannn.ks@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:58:34","level":"info","message":"Admin login successful","stack":null,"service":"sports-academy-sas","user_id":5,"email":"aryannn.ks@gmail.com","ip":"::1"}
+{"timestamp":"2026-05-24 17:58:34","level":"info","message":"POST /api/v1/auth/login 200 205.549 ms - 407","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:58:35","level":"info","message":"GET /api/v1/admin/coaches 304 6.219 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:58:35","level":"info","message":"GET /api/v1/admin/coaches 304 5.279 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:58:42","level":"info","message":"GET /api/v1/admin/sports 304 15.655 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:58:42","level":"info","message":"GET /api/v1/admin/sports 304 6.401 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:58:55","level":"info","message":"GET /api/v1/admin/coaches 304 12.400 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 17:58:55","level":"info","message":"GET /api/v1/admin/coaches 304 9.879 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:04","level":"info","message":"GET /api/v1/admin/students 304 17.253 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:04","level":"info","message":"GET /api/v1/admin/sports 304 17.375 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:04","level":"info","message":"GET /api/v1/admin/batches 304 20.832 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:04","level":"info","message":"GET /api/v1/admin/students 304 15.234 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:04","level":"info","message":"GET /api/v1/admin/sports 304 10.986 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:04","level":"info","message":"GET /api/v1/admin/batches 304 11.418 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:13","level":"info","message":"GET /api/v1/admin/coaches 304 9.069 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:13","level":"info","message":"GET /api/v1/admin/batches 304 15.128 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:13","level":"info","message":"GET /api/v1/admin/sports 304 16.323 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:13","level":"info","message":"GET /api/v1/admin/coaches 304 32.275 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:13","level":"info","message":"GET /api/v1/admin/batches 304 38.973 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:13","level":"info","message":"GET /api/v1/admin/sports 304 13.907 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:19","level":"info","message":"GET /api/v1/admin/payments 304 11.976 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:19","level":"info","message":"GET /api/v1/admin/students 304 15.736 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:19","level":"info","message":"GET /api/v1/admin/payments 304 13.115 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:19","level":"info","message":"GET /api/v1/admin/students 304 30.041 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:27","level":"info","message":"GET /api/v1/admin/analytics 200 19.691 ms - 220","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:00:27","level":"info","message":"GET /api/v1/admin/analytics 304 8.676 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:02:56","level":"info","message":"GET /api/v1/admin/analytics 304 10.281 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:02:58","level":"info","message":"GET /api/v1/admin/payments 304 9.787 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:02:58","level":"info","message":"GET /api/v1/admin/students 304 13.375 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:02:58","level":"info","message":"GET /api/v1/admin/payments 304 6.938 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:02:58","level":"info","message":"GET /api/v1/admin/students 304 11.161 ms - -","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 18:04:02","level":"info","message":"Email dispatched","stack":null,"service":"sports-academy-sas","to":"idsecond616@gmail.com","subject":"Attendance Update — Pranav Kumar Swain","messageId":"<50193425-b9bd-b9b8-9761-a1774447e4d7@gmail.com>"}
+{"timestamp":"2026-05-24 18:04:02","level":"info","message":"Student attendance marked and parent notifications dispatched","stack":null,"service":"sports-academy-sas","coach_id":110,"batch_id":207,"records_count":1}
+{"timestamp":"2026-05-24 18:04:02","level":"info","message":"POST /api/v1/coach/attendance 201 3832.098 ms - 381","stack":null,"service":"sports-academy-sas"}
+{"timestamp":"2026-05-24 20:45:51","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 20:45:52","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 21:46:57","level":"info","message":"Server boot starting","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}
+{"timestamp":"2026-05-24 21:46:57","level":"info","message":"Server started successfully","stack":null,"service":"sports-academy-sas","env":"development","port":"5000"}

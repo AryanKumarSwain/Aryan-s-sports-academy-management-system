@@ -1,0 +1,175 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Academy {
+  academy_id        Int      @id @default(autoincrement())
+  name              String
+  owner_name        String?
+  email             String?  @unique
+  phone_number      String?
+  subscription_plan String?
+  status            String   @default("pending")
+  created_at        DateTime @default(now())
+
+  users               User[]
+  coaches             Coach[]
+  batches             Batch[]
+  students            Student[]
+  sports              Sport[]
+  coach_attendances   CoachAttendance[]
+  payments            Payment[]
+  student_attendances StudentAttendance[]
+
+  @@map("academies")
+}
+
+model User {
+  user_id       Int       @id @default(autoincrement())
+  academy_id    Int?
+  name          String
+  email         String    @unique
+  password_hash String
+  role          String    @default("ADMIN")
+  is_deleted    Boolean   @default(false)
+  deleted_at    DateTime?
+  created_at    DateTime  @default(now())
+
+  academy            Academy?          @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  marked_attendances CoachAttendance[]
+
+  @@map("users")
+}
+
+model Coach {
+  coach_id       Int       @id @default(autoincrement())
+  academy_id     Int
+  name           String
+  specialization String?
+  phone_number   String?
+  email          String?
+  password_hash  String?
+  is_deleted     Boolean   @default(false)
+  deleted_at     DateTime?
+  created_at     DateTime  @default(now())
+
+  academy             Academy              @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  batches             Batch[]
+  student_attendances StudentAttendance[]
+  coach_attendances   CoachAttendance[]
+
+  @@unique([academy_id, email])
+  @@map("coaches")
+}
+
+model Sport {
+  sport_id   Int     @id @default(autoincrement())
+  name       String
+  academy_id Int?
+  is_custom  Boolean @default(false)
+
+  academy  Academy?  @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  batches  Batch[]
+  students Student[]
+
+  @@unique([name, academy_id])
+  @@map("sports")
+}
+
+model Batch {
+  batch_id   Int     @id @default(autoincrement())
+  academy_id Int
+  name       String
+  coach_id   Int?
+  sport_id   Int?
+  timing     String?
+
+  academy             Academy              @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  coach               Coach?               @relation(fields: [coach_id], references: [coach_id], onDelete: SetNull)
+  sport               Sport?               @relation(fields: [sport_id], references: [sport_id], onDelete: SetNull)
+  students            Student[]
+  student_attendances StudentAttendance[]
+
+  @@map("batches")
+}
+
+model Student {
+  student_id   Int       @id @default(autoincrement())
+  academy_id   Int
+  name         String
+  age          Int?
+  gender       String?
+  sport_id     Int?
+  batch_id     Int?
+  blood_group  String?
+  parent_email String?
+  fees_status  String    @default("unpaid")
+  is_deleted   Boolean   @default(false)
+  deleted_at   DateTime?
+  created_at   DateTime  @default(now())
+
+  academy             Academy              @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  sport               Sport?               @relation(fields: [sport_id], references: [sport_id], onDelete: SetNull)
+  batch               Batch?               @relation(fields: [batch_id], references: [batch_id], onDelete: SetNull)
+  payments            Payment[]
+  student_attendances StudentAttendance[]
+
+  @@map("students")
+}
+
+model Payment {
+  payment_id   Int      @id @default(autoincrement())
+  academy_id   Int
+  student_id   Int
+  amount       Decimal  @db.Decimal(10, 2)
+  payment_date DateTime
+  method       String?
+  status       String   @default("pending")
+
+  academy Academy @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  student Student @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+model StudentAttendance {
+  attendance_id      Int      @id @default(autoincrement())
+  academy_id         Int
+  student_id         Int
+  batch_id           Int
+  date               DateTime @db.Date
+  status             String
+  marked_by_coach_id Int?
+  remarks            String?  @db.Text
+  created_at         DateTime @default(now())
+
+  academy Academy @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  student Student @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
+  batch   Batch   @relation(fields: [batch_id], references: [batch_id], onDelete: Cascade)
+  coach   Coach?  @relation(fields: [marked_by_coach_id], references: [coach_id], onDelete: SetNull)
+
+  @@map("student_attendance")
+}
+
+model CoachAttendance {
+  attendance_id      Int      @id @default(autoincrement())
+  coach_id           Int
+  academy_id         Int
+  date               DateTime @db.Date
+  status             String
+  marked_by_admin_id Int?
+  remarks            String?  @db.Text
+  created_at         DateTime @default(now())
+
+  coach   Coach   @relation(fields: [coach_id], references: [coach_id], onDelete: Cascade)
+  academy Academy @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  admin   User?   @relation(fields: [marked_by_admin_id], references: [user_id], onDelete: SetNull)
+
+  @@map("coach_attendance")
+}
