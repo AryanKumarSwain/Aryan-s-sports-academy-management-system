@@ -61,14 +61,23 @@ export default function PaymentsPanel() {
     }
   };
 
-  const updateStatus = async (paymentId, status) => {
+  const updateStatus = async (paymentId, status, rejected_reason) => {
     try {
-      const result = await adminPatch(`/admin/payments/${paymentId}/status`, { status });
+      const result = await adminPatch(`/admin/payments/${paymentId}/status`, {
+        status,
+        rejected_reason
+      });
       setMessage({ text: result.message, type: 'success' });
       loadData();
     } catch (error) {
       setMessage({ text: error.message, type: 'error' });
     }
+  };
+
+  const rejectPayment = async (paymentId) => {
+    const reason = window.prompt('Rejection reason (optional):');
+    if (reason === null) return;
+    await updateStatus(paymentId, 'rejected', reason || undefined);
   };
 
   return (
@@ -153,8 +162,13 @@ export default function PaymentsPanel() {
                             Mark Paid
                           </button>
                         )}
-                        {payment.status !== 'failed' && (
-                          <button type="button" className="btn-danger btn-sm" onClick={() => updateStatus(payment.payment_id, 'failed')}>
+                        {payment.status === 'pending' && (
+                          <button type="button" className="btn-danger btn-sm" onClick={() => rejectPayment(payment.payment_id)}>
+                            Reject
+                          </button>
+                        )}
+                        {payment.status !== 'failed' && payment.status !== 'rejected' && (
+                          <button type="button" className="btn-secondary btn-sm" onClick={() => updateStatus(payment.payment_id, 'failed')}>
                             Fail
                           </button>
                         )}

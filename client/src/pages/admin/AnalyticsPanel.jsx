@@ -78,6 +78,10 @@ export default function AnalyticsPanel() {
           <span className="kpi-label">Unpaid Students</span>
           <span className="kpi-value text-warning">{summary.unpaid_students ?? 0}</span>
         </div>
+        <div className="kpi-card">
+          <span className="kpi-label">Attendance % (30d)</span>
+          <span className="kpi-value text-accent">{metrics.attendance_percent ?? 0}%</span>
+        </div>
       </div>
       <div className="card">
         <h3 className="font-bold">Workspace Overview</h3>

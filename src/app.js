@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import 'dotenv/config.js';
 import routes from './routes/index.route.js';
 import errorMiddleware from './middlewares/error.middleware.js';
+import { apiRateLimiter } from './middlewares/rateLimit.middleware.js';
 import logger from './utils/logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -29,7 +30,7 @@ app.use(
   })
 );
 
-app.use('/api/v1', routes);
+app.use('/api/v1', apiRateLimiter, routes);
 
 app.get(/^(?!\/api\/).*/, (req, res, next) => {
   if (req.method !== 'GET') {

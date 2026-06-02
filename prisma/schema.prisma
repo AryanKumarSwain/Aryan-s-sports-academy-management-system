@@ -26,6 +26,8 @@ model Academy {
   coach_attendances   CoachAttendance[]
   payments            Payment[]
   student_attendances StudentAttendance[]
+  daily_notes         DailyStudentNote[]
+  audit_logs          AuditLog[]
 
   @@map("academies")
 }
@@ -43,8 +45,20 @@ model User {
 
   academy            Academy?          @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
   marked_attendances CoachAttendance[]
+  approved_payments  Payment[]         @relation("PaymentApprovedBy")
 
   @@map("users")
+}
+
+model SuperAdmin {
+  super_admin_id Int      @id @default(autoincrement())
+  name           String
+  email          String   @unique
+  password_hash  String
+  is_active      Boolean  @default(true)
+  created_at     DateTime @default(now())
+
+  @@map("super_admins")
 }
 
 model Coach {
@@ -63,6 +77,8 @@ model Coach {
   batches             Batch[]
   student_attendances StudentAttendance[]
   coach_attendances   CoachAttendance[]
+  collected_payments  Payment[]            @relation("PaymentCollectedBy")
+  daily_notes         DailyStudentNote[]
 
   @@unique([academy_id, email])
   @@map("coaches")
@@ -83,57 +99,75 @@ model Sport {
 }
 
 model Batch {
-  batch_id   Int     @id @default(autoincrement())
-  academy_id Int
-  name       String
-  coach_id   Int?
-  sport_id   Int?
-  timing     String?
+  batch_id     Int     @id @default(autoincrement())
+  academy_id   Int
+  name         String
+  coach_id     Int?
+  sport_id     Int?
+  timing       String?
+  max_capacity Int?
+  status       String  @default("ACTIVE")
 
   academy             Academy              @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
   coach               Coach?               @relation(fields: [coach_id], references: [coach_id], onDelete: SetNull)
   sport               Sport?               @relation(fields: [sport_id], references: [sport_id], onDelete: SetNull)
   students            Student[]
   student_attendances StudentAttendance[]
+  daily_notes         DailyStudentNote[]
 
   @@map("batches")
 }
 
 model Student {
-  student_id   Int       @id @default(autoincrement())
-  academy_id   Int
-  name         String
-  age          Int?
-  gender       String?
-  sport_id     Int?
-  batch_id     Int?
-  blood_group  String?
-  parent_email String?
-  fees_status  String    @default("unpaid")
-  is_deleted   Boolean   @default(false)
-  deleted_at   DateTime?
-  created_at   DateTime  @default(now())
+  student_id    Int       @id @default(autoincrement())
+  academy_id    Int
+  name          String
+  age           Int?
+  gender        String?
+  sport_id      Int?
+  batch_id      Int?
+  blood_group   String?
+  parent_name   String?
+  parent_email  String?
+  parent_phone  String?
+  fees_status   String    @default("unpaid")
+  status        String    @default("ACTIVE")
+  exit_reason   String?
+  exit_note     String?   @db.Text
+  is_deleted    Boolean   @default(false)
+  deleted_at    DateTime?
+  created_at    DateTime  @default(now())
 
   academy             Academy              @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
   sport               Sport?               @relation(fields: [sport_id], references: [sport_id], onDelete: SetNull)
   batch               Batch?               @relation(fields: [batch_id], references: [batch_id], onDelete: SetNull)
   payments            Payment[]
   student_attendances StudentAttendance[]
+  daily_notes         DailyStudentNote[]
 
   @@map("students")
 }
 
 model Payment {
-  payment_id   Int      @id @default(autoincrement())
-  academy_id   Int
-  student_id   Int
-  amount       Decimal  @db.Decimal(10, 2)
-  payment_date DateTime
-  method       String?
-  status       String   @default("pending")
+  payment_id            Int      @id @default(autoincrement())
+  academy_id            Int
+  student_id            Int
+  amount                Decimal  @db.Decimal(10, 2)
+  payment_date          DateTime
+  method                String?
+  status                String   @default("pending")
+  proof_url             String?
+  remarks               String?  @db.Text
+  collected_by_coach_id Int?
+  approved_by_user_id   Int?
+  rejected_reason       String?  @db.Text
+  created_at            DateTime @default(now())
+  updated_at            DateTime @default(now()) @updatedAt
 
-  academy Academy @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
-  student Student @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
+  academy        Academy @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  student        Student @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
+  collected_by   Coach?  @relation("PaymentCollectedBy", fields: [collected_by_coach_id], references: [coach_id], onDelete: SetNull)
+  approved_by    User?   @relation("PaymentApprovedBy", fields: [approved_by_user_id], references: [user_id], onDelete: SetNull)
 
   @@map("payments")
 }
@@ -148,12 +182,14 @@ model StudentAttendance {
   marked_by_coach_id Int?
   remarks            String?  @db.Text
   created_at         DateTime @default(now())
+  updated_at         DateTime @default(now()) @updatedAt
 
   academy Academy @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
   student Student @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
   batch   Batch   @relation(fields: [batch_id], references: [batch_id], onDelete: Cascade)
   coach   Coach?  @relation(fields: [marked_by_coach_id], references: [coach_id], onDelete: SetNull)
 
+  @@unique([student_id, batch_id, date])
   @@map("student_attendance")
 }
 
@@ -171,5 +207,67 @@ model CoachAttendance {
   academy Academy @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
   admin   User?   @relation(fields: [marked_by_admin_id], references: [user_id], onDelete: SetNull)
 
+  @@unique([coach_id, date])
   @@map("coach_attendance")
+}
+
+model DailyStudentNote {
+  note_id           Int      @id @default(autoincrement())
+  academy_id        Int
+  student_id        Int
+  batch_id          Int?
+  coach_id          Int
+  note_date         DateTime @db.Date
+  performance_notes String?  @db.Text
+  behaviour_notes   String?  @db.Text
+  achievements      String?  @db.Text
+  improvement_areas String?  @db.Text
+  emailed_at        DateTime?
+  created_at        DateTime @default(now())
+
+  academy Academy @relation(fields: [academy_id], references: [academy_id], onDelete: Cascade)
+  student Student @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
+  batch   Batch?  @relation(fields: [batch_id], references: [batch_id], onDelete: SetNull)
+  coach   Coach   @relation(fields: [coach_id], references: [coach_id], onDelete: Cascade)
+
+  @@map("daily_student_notes")
+}
+
+model AuditLog {
+  audit_id    Int      @id @default(autoincrement())
+  academy_id  Int?
+  actor_type  String
+  actor_id    Int?
+  action      String
+  entity_type String?
+  entity_id   Int?
+  metadata    String?  @db.Text
+  ip_address  String?
+  created_at  DateTime @default(now())
+
+  academy Academy? @relation(fields: [academy_id], references: [academy_id], onDelete: SetNull)
+
+  @@index([academy_id, created_at])
+  @@index([entity_type, entity_id])
+  @@map("audit_logs")
+}
+
+model GlobalSetting {
+  setting_key   String   @id
+  setting_value String   @db.Text
+  updated_at    DateTime @updatedAt
+
+  @@map("global_settings")
+}
+
+model PasswordReset {
+  reset_id     Int      @id @default(autoincrement())
+  email        String
+  code_hash    String
+  account_type String
+  expires_at   DateTime
+  created_at   DateTime @default(now())
+
+  @@index([email])
+  @@map("password_resets")
 }

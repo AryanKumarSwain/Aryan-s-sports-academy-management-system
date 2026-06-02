@@ -9,6 +9,7 @@ const router = express.Router();
 router.use(authenticate);
 router.use(authorize('COACH'));
 
+router.get('/dashboard', coachController.getDashboard);
 router.get('/batches', coachController.getMyBatches);
 router.post('/attendance', validate('markAttendance'), validationErrorHandler, coachController.markAttendance);
 

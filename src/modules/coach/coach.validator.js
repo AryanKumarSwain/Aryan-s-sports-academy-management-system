@@ -18,8 +18,8 @@ export const validate = (method) => {
           .isInt()
           .withMessage('Each record requires a valid student_id'),
         body('records.*.status')
-          .isIn(['PRESENT', 'ABSENT', 'present', 'absent'])
-          .withMessage('Status must be PRESENT or ABSENT'),
+          .isIn(['PRESENT', 'ABSENT', 'LATE', 'present', 'absent', 'late'])
+          .withMessage('Status must be PRESENT, ABSENT, or LATE'),
         body('records.*.remarks')
           .optional()
           .isString()

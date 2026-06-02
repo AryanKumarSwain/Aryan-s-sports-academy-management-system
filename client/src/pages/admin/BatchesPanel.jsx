@@ -6,7 +6,8 @@ const emptyForm = {
   name: '',
   timing: TIMING_OPTIONS[4],
   coach_id: '',
-  sport_id: ''
+  sport_id: '',
+  max_capacity: ''
 };
 
 export default function BatchesPanel() {
@@ -53,7 +54,8 @@ export default function BatchesPanel() {
         name: form.name.trim(),
         timing: form.timing,
         coach_id: parseInt(form.coach_id, 10),
-        sport_id: parseInt(form.sport_id, 10)
+        sport_id: parseInt(form.sport_id, 10),
+        max_capacity: form.max_capacity ? parseInt(form.max_capacity, 10) : undefined
       });
       setMessage({ text: result.message, type: 'success' });
       setForm(emptyForm);
@@ -102,6 +104,19 @@ export default function BatchesPanel() {
               ))}
             </select>
           </div>
+          <div className="mb-4">
+            <label className="label" htmlFor="batchCapacity">Max Capacity (optional)</label>
+            <input
+              id="batchCapacity"
+              name="max_capacity"
+              type="number"
+              min={1}
+              className="input-field"
+              value={form.max_capacity}
+              onChange={handleChange}
+              placeholder="e.g. 20"
+            />
+          </div>
           <button type="submit" className="btn-primary w-full">Create Batch</button>
         </form>
         <div className="card overflow-x-auto">
@@ -116,13 +131,14 @@ export default function BatchesPanel() {
                   <th>Timing</th>
                   <th>Coach</th>
                   <th>Sport</th>
-                  <th>Students</th>
+                  <th>Capacity</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 {batches.length === 0 ? (
                   <tr>
-                    <td colSpan={5} className="py-8 text-center text-muted">No batches scheduled.</td>
+                    <td colSpan={6} className="py-8 text-center text-muted">No batches scheduled.</td>
                   </tr>
                 ) : (
                   batches.map((batch) => (
@@ -131,7 +147,11 @@ export default function BatchesPanel() {
                       <td>{batch.timing || '—'}</td>
                       <td>{batch.coach?.name || '—'}</td>
                       <td>{batch.sport?.name || '—'}</td>
-                      <td>{batch.students?.length ?? 0}</td>
+                      <td>
+                        {batch.enrolled_count ?? batch.students?.length ?? 0}
+                        {batch.max_capacity != null ? ` / ${batch.max_capacity}` : ''}
+                      </td>
+                      <td>{batch.status || 'ACTIVE'}</td>
                     </tr>
                   ))
                 )}

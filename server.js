@@ -1,5 +1,7 @@
 import app from './src/app.js';
 import { PORT, NODE_ENV } from './src/config/app.config.js';
+import { verifySmtpConnection } from './src/services/mail.service.js';
+import { ensureSuperAdminFromEnv } from './src/modules/super-admin/super-admin.service.js';
 import logger from './src/utils/logger.js';
 
 const startServer = async () => {
@@ -8,6 +10,9 @@ const startServer = async () => {
       env: NODE_ENV,
       port: PORT
     });
+
+    await ensureSuperAdminFromEnv();
+    await verifySmtpConnection();
 
     const server = app.listen(PORT, () => {
       logger.info('Server started successfully', {

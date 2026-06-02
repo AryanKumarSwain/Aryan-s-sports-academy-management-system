@@ -21,9 +21,16 @@ router.delete('/coaches/:coach_id', adminController.deleteCoach);
 router.get('/students', adminController.getAllStudents);
 router.post('/students', validate('createStudent'), validationErrorHandler, adminController.createStudent);
 router.put('/students/:student_id', validate('updateStudent'), validationErrorHandler, adminController.updateStudent);
+router.post(
+  '/students/:student_id/exit',
+  validate('exitStudent'),
+  validationErrorHandler,
+  adminController.exitStudent
+);
 router.delete('/students/:student_id', adminController.deleteStudent);
 
 router.get('/batches', adminController.getAllBatches);
+router.get('/batches/available', adminController.getAvailableBatches);
 router.post('/batches', validate('createBatch'), validationErrorHandler, adminController.createBatch);
 router.put('/batches/:batch_id', validate('updateBatch'), validationErrorHandler, adminController.updateBatch);
 router.delete('/batches/:batch_id', adminController.deleteBatch);
@@ -36,6 +43,5 @@ router.post('/payments', validate('createPayment'), validationErrorHandler, admi
 router.patch('/payments/:payment_id/status', validate('updatePaymentStatus'), validationErrorHandler, adminController.updatePaymentStatus);
 
 router.get('/analytics', adminController.getAcademyReport);
-router.get('/report', adminController.getAcademyReport);
 
 export default router;

@@ -12,3 +12,5 @@ export const generateTempPassword = (length = 8) => {
 
   return password;
 };
+
+export const generateResetCode = () => String(crypto.randomInt(100000, 1000000));

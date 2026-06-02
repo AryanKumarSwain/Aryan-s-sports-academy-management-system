@@ -107,6 +107,12 @@ export const loginUser = async ({ email, password, ip }) => {
     throw error;
   }
 
+  if (user.academy && !['active', 'approved'].includes(user.academy.status?.toLowerCase())) {
+    const error = new Error('Academy account is not active. Contact support.');
+    error.statusCode = 403;
+    throw error;
+  }
+
   const isPasswordValid = await bcrypt.compare(password, user.password_hash);
 
   if (!isPasswordValid) {

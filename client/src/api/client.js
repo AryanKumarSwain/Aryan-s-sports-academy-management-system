@@ -2,6 +2,8 @@ import axios from 'axios';
 
 export const ADMIN_TOKEN_KEY = 'sams_admin_token';
 export const COACH_TOKEN_KEY = 'sams_coach_token';
+export const SUPER_ADMIN_TOKEN_KEY = 'sams_super_admin_token';
+export const SIDEBAR_COLLAPSED_KEY = 'sams_sidebar_collapsed';
 
 const api = axios.create({
   baseURL: '/api/v1',
@@ -48,6 +50,18 @@ export function setCoachToken(token) {
 
 export function clearCoachToken() {
   localStorage.removeItem(COACH_TOKEN_KEY);
+}
+
+export function getSuperAdminToken() {
+  return localStorage.getItem(SUPER_ADMIN_TOKEN_KEY);
+}
+
+export function setSuperAdminToken(token) {
+  localStorage.setItem(SUPER_ADMIN_TOKEN_KEY, token);
+}
+
+export function clearSuperAdminToken() {
+  localStorage.removeItem(SUPER_ADMIN_TOKEN_KEY);
 }
 
 export async function signup(body) {
@@ -118,6 +132,30 @@ export async function coachPost(path, body) {
   return api
     .post(path, body, {
       headers: { Authorization: `Bearer ${getCoachToken()}` }
+    })
+    .then(unwrap);
+}
+
+export async function superAdminLogin(body) {
+  const data = await api.post('/super-admin/login', body).then(unwrap);
+  if (data.data?.token) {
+    setSuperAdminToken(data.data.token);
+  }
+  return data;
+}
+
+export async function superAdminGet(path) {
+  return api
+    .get(path, {
+      headers: { Authorization: `Bearer ${getSuperAdminToken()}` }
+    })
+    .then(unwrap);
+}
+
+export async function superAdminPatch(path, body) {
+  return api
+    .patch(path, body, {
+      headers: { Authorization: `Bearer ${getSuperAdminToken()}` }
     })
     .then(unwrap);
 }

@@ -7,6 +7,7 @@ import { clearCoachToken, coachGet, coachPost } from '../api/client';
 export default function CoachPortal() {
   const navigate = useNavigate();
   const [batches, setBatches] = useState([]);
+  const [dashboard, setDashboard] = useState(null);
   const [selectedBatchId, setSelectedBatchId] = useState('');
   const [attendanceDate, setAttendanceDate] = useState(new Date().toISOString().split('T')[0]);
   const [attendanceMap, setAttendanceMap] = useState({});
@@ -20,8 +21,13 @@ export default function CoachPortal() {
   const loadBatches = useCallback(async () => {
     setLoading(true);
     try {
-      const result = await coachGet('/coach/batches');
-      setBatches(result.data || []);
+      const [batchRes, dashRes] = await Promise.all([
+        coachGet('/coach/batches'),
+        coachGet('/coach/dashboard')
+      ]);
+      const batchPayload = batchRes.data || {};
+      setBatches(batchPayload.batches || batchPayload || []);
+      setDashboard(dashRes.data || null);
     } catch (error) {
       setMessage({ text: error.message, type: 'error' });
       if (error.status === 401) {
@@ -93,12 +99,9 @@ export default function CoachPortal() {
         records
       });
       setMessage({
-        text: `${result.message} Automatic confirmation notifications are being sent to parents' email addresses.`,
+        text: `${result.message} Parent notifications are being sent where email is on file.`,
         type: 'success'
       });
-      window.alert(
-        'Attendance submitted successfully.\n\nParent confirmation emails are being dispatched automatically for each student with a registered parent email.'
-      );
     } catch (error) {
       setMessage({ text: error.message, type: 'error' });
     } finally {
@@ -117,6 +120,26 @@ export default function CoachPortal() {
       </Navbar>
 
       <main className="mx-auto max-w-4xl px-4 py-8 lg:px-6">
+        {dashboard && (
+          <section className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="kpi-card">
+              <span className="kpi-label">Coach</span>
+              <span className="kpi-value text-base">{dashboard.coach_name}</span>
+            </div>
+            <div className="kpi-card">
+              <span className="kpi-label">Academy</span>
+              <span className="kpi-value text-base">{dashboard.academy_name}</span>
+            </div>
+            <div className="kpi-card">
+              <span className="kpi-label">Today&apos;s Students</span>
+              <span className="kpi-value">{dashboard.todays_students ?? 0}</span>
+            </div>
+            <div className="kpi-card">
+              <span className="kpi-label">Pending Fees</span>
+              <span className="kpi-value text-warning">{dashboard.pending_fees_count ?? 0}</span>
+            </div>
+          </section>
+        )}
         <section className="mb-10">
           <h2 className="text-2xl font-bold">Your Assigned Training Blocks</h2>
           <p className="text-muted">
@@ -215,6 +238,16 @@ export default function CoachPortal() {
                         onChange={() => handleStatusChange(student.student_id, 'ABSENT')}
                       />
                       Absent
+                    </label>
+                    <label className="flex cursor-pointer items-center gap-2 text-sm font-medium">
+                      <input
+                        type="radio"
+                        name={`status_${student.student_id}`}
+                        value="LATE"
+                        checked={attendanceMap[student.student_id] === 'LATE'}
+                        onChange={() => handleStatusChange(student.student_id, 'LATE')}
+                      />
+                      Late
                     </label>
                   </div>
                   <div>

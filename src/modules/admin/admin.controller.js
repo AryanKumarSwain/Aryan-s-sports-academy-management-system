@@ -99,6 +99,20 @@ export const updateStudent = async (req, res, next) => {
   }
 };
 
+export const exitStudent = async (req, res, next) => {
+  try {
+    const student = await adminService.exitStudent(
+      req.user.academy_id,
+      req.params.student_id,
+      req.body,
+      req.user.user_id
+    );
+    res.json(successResponse('Student exit recorded', student));
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const deleteStudent = async (req, res, next) => {
   try {
     await adminService.deleteStudent(req.user.academy_id, req.params.student_id);
@@ -139,10 +153,22 @@ export const updateBatch = async (req, res, next) => {
   }
 };
 
+export const getAvailableBatches = async (req, res, next) => {
+  try {
+    const batches = await adminService.getAvailableBatches(
+      req.user.academy_id,
+      req.query.sport_id
+    );
+    res.json(successResponse('Available batches retrieved', batches));
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const deleteBatch = async (req, res, next) => {
   try {
     await adminService.deleteBatch(req.user.academy_id, req.params.batch_id);
-    res.json(successResponse('Batch deleted successfully', {}));
+    res.json(successResponse('Batch deactivated successfully', {}));
   } catch (err) {
     next(err);
   }
@@ -196,7 +222,11 @@ export const updatePaymentStatus = async (req, res, next) => {
     const payment = await adminService.updatePaymentStatus(
       req.user.academy_id,
       req.params.payment_id,
-      req.body.status
+      {
+        status: req.body.status,
+        rejected_reason: req.body.rejected_reason
+      },
+      req.user.user_id
     );
     res.json(successResponse('Payment updated successfully', payment));
   } catch (err) {

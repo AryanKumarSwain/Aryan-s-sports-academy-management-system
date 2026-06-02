@@ -1,27 +1,110 @@
 import prisma from '../../config/prisma.js';
 import { NOT_DELETED } from '../../utils/softDelete.util.js';
 import { sendParentAttendanceEmail } from '../../services/mail.service.js';
+import { logAudit } from '../../utils/audit.util.js';
 import logger from '../../utils/logger.js';
 
-const VALID_ATTENDANCE_STATUSES = ['PRESENT', 'ABSENT'];
+const VALID_ATTENDANCE_STATUSES = ['PRESENT', 'ABSENT', 'LATE'];
 
-export const getCoachBatches = async (coach_id, academy_id) =>
-  prisma.batch.findMany({
+export const getCoachBatches = async (coach_id, academy_id) => {
+  const academy = await prisma.academy.findUnique({
+    where: { academy_id: parseInt(academy_id, 10) },
+    select: { name: true }
+  });
+
+  const batches = await prisma.batch.findMany({
     where: {
       coach_id: parseInt(coach_id, 10),
-      academy_id: parseInt(academy_id, 10)
+      academy_id: parseInt(academy_id, 10),
+      status: 'ACTIVE'
     },
     include: {
       sport: true,
-      students: { where: NOT_DELETED }
+      students: { where: { ...NOT_DELETED, status: 'ACTIVE' } }
     }
   });
+
+  return {
+    coach_context: {
+      academy_name: academy?.name || 'Academy'
+    },
+    batches
+  };
+};
+
+export const getCoachDashboard = async (coach_id, academy_id) => {
+  const coach = await prisma.coach.findFirst({
+    where: { coach_id: parseInt(coach_id, 10), ...NOT_DELETED },
+    include: { academy: { select: { name: true } } }
+  });
+
+  if (!coach) {
+    const error = new Error('Coach not found');
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const batches = await prisma.batch.findMany({
+    where: {
+      coach_id: coach.coach_id,
+      academy_id: parseInt(academy_id, 10),
+      status: 'ACTIVE'
+    },
+    include: {
+      students: { where: { ...NOT_DELETED, status: 'ACTIVE' } },
+      sport: true
+    }
+  });
+
+  const todayStudentCount = batches.reduce((sum, b) => sum + b.students.length, 0);
+
+  const todayAttendance = await prisma.studentAttendance.findMany({
+    where: {
+      academy_id: parseInt(academy_id, 10),
+      marked_by_coach_id: coach.coach_id,
+      date: today
+    }
+  });
+
+  const presentToday = todayAttendance.filter((a) => a.status === 'PRESENT').length;
+  const attendanceRate =
+    todayAttendance.length > 0
+      ? Math.round((presentToday / todayAttendance.length) * 100)
+      : 0;
+
+  const pendingFees = await prisma.student.count({
+    where: {
+      academy_id: parseInt(academy_id, 10),
+      batch_id: { in: batches.map((b) => b.batch_id) },
+      ...NOT_DELETED,
+      fees_status: { in: ['unpaid', 'pending', 'partial'] }
+    }
+  });
+
+  return {
+    coach_name: coach.name,
+    academy_name: coach.academy?.name,
+    assigned_batches: batches.length,
+    todays_students: todayStudentCount,
+    attendance_summary: {
+      marked_today: todayAttendance.length,
+      present_today: presentToday,
+      rate_percent: attendanceRate
+    },
+    pending_fees_count: pendingFees,
+    batches
+  };
+};
 
 export const markStudentAttendance = async (coach_id, academy_id, payload) => {
   const coachId = parseInt(coach_id, 10);
   const academyId = parseInt(academy_id, 10);
   const batchId = parseInt(payload.batch_id, 10);
   const attendanceDate = payload.date ? new Date(payload.date) : new Date();
+  attendanceDate.setHours(0, 0, 0, 0);
   const records = payload.records || [];
 
   if (!Array.isArray(records) || records.length === 0) {
@@ -34,7 +117,8 @@ export const markStudentAttendance = async (coach_id, academy_id, payload) => {
     where: {
       batch_id: batchId,
       academy_id: academyId,
-      coach_id: coachId
+      coach_id: coachId,
+      status: 'ACTIVE'
     },
     include: { sport: true }
   });
@@ -62,7 +146,8 @@ export const markStudentAttendance = async (coach_id, academy_id, payload) => {
         student_id: parseInt(record.student_id, 10),
         academy_id: academyId,
         batch_id: batchId,
-        ...NOT_DELETED
+        ...NOT_DELETED,
+        status: 'ACTIVE'
       }
     });
 
@@ -72,12 +157,24 @@ export const markStudentAttendance = async (coach_id, academy_id, payload) => {
       throw error;
     }
 
-    const attendance = await prisma.studentAttendance.create({
-      data: {
+    const attendance = await prisma.studentAttendance.upsert({
+      where: {
+        student_id_batch_id_date: {
+          student_id: student.student_id,
+          batch_id: batchId,
+          date: attendanceDate
+        }
+      },
+      create: {
         academy_id: academyId,
         student_id: student.student_id,
         batch_id: batchId,
         date: attendanceDate,
+        status,
+        marked_by_coach_id: coachId,
+        remarks: record.remarks || null
+      },
+      update: {
         status,
         marked_by_coach_id: coachId,
         remarks: record.remarks || null
@@ -95,18 +192,29 @@ export const markStudentAttendance = async (coach_id, academy_id, payload) => {
           batchName: batch.name,
           remarks: record.remarks || null,
           markedAt: new Date()
+        }).catch((mailErr) => {
+          logger.error('Parent attendance email failed', {
+            student_id: student.student_id,
+            message: mailErr.message
+          });
         })
       );
-    } else {
-      logger.warn('Parent email missing; attendance email skipped', {
-        student_id: student.student_id
-      });
     }
   }
 
   await Promise.all(emailDispatches);
 
-  logger.info('Student attendance marked and parent notifications dispatched', {
+  await logAudit({
+    academy_id: academyId,
+    actor_type: 'COACH',
+    actor_id: coachId,
+    action: 'STUDENT_ATTENDANCE_SUBMITTED',
+    entity_type: 'Batch',
+    entity_id: batchId,
+    metadata: { records_count: results.length, date: attendanceDate }
+  });
+
+  logger.info('Student attendance marked', {
     coach_id: coachId,
     batch_id: batchId,
     records_count: results.length

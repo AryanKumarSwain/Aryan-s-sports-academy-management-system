@@ -89,6 +89,13 @@ export const validate = (method) => {
           .withMessage('Valid parent email is required for attendance notifications')
       ];
 
+    case 'exitStudent':
+      return [
+        param('student_id').isInt().withMessage('Invalid student ID'),
+        body('exit_reason').isString().trim().notEmpty().withMessage('Exit reason is required'),
+        body('exit_note').optional().isString()
+      ];
+
     case 'updateStudent':
       return [
         param('student_id').isInt().withMessage('Invalid student ID'),
@@ -141,7 +148,15 @@ export const validate = (method) => {
           .withMessage('Invalid sport ID'),
         body('timing')
           .matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/)
-          .withMessage('Invalid timing format (use HH:mm)')
+          .withMessage('Invalid timing format (use HH:mm)'),
+        body('max_capacity')
+          .optional()
+          .isInt({ min: 1 })
+          .withMessage('max_capacity must be a positive integer'),
+        body('status')
+          .optional()
+          .isIn(['ACTIVE', 'INACTIVE'])
+          .withMessage('Invalid batch status')
       ];
 
     case 'updateBatch':
@@ -162,7 +177,15 @@ export const validate = (method) => {
         body('timing')
           .optional()
           .matches(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/)
-          .withMessage('Invalid timing format (use HH:mm)')
+          .withMessage('Invalid timing format (use HH:mm)'),
+        body('max_capacity')
+          .optional()
+          .isInt({ min: 1 })
+          .withMessage('max_capacity must be a positive integer'),
+        body('status')
+          .optional()
+          .isIn(['ACTIVE', 'INACTIVE'])
+          .withMessage('Invalid batch status')
       ];
 
     // ATTENDANCE VALIDATORS
@@ -208,8 +231,12 @@ export const validate = (method) => {
       return [
         param('payment_id').isInt().withMessage('Invalid payment ID'),
         body('status')
-          .isIn(['pending', 'completed', 'failed'])
-          .withMessage('Invalid status')
+          .isIn(['pending', 'completed', 'failed', 'rejected'])
+          .withMessage('Invalid status'),
+        body('rejected_reason')
+          .optional()
+          .isString()
+          .withMessage('Rejected reason must be a string')
       ];
 
     default:

@@ -4,6 +4,7 @@ import { BCRYPT_SALT_ROUNDS } from '../../config/app.config.js';
 import { NOT_DELETED, softDeletePayload } from '../../utils/softDelete.util.js';
 import { generateTempPassword } from '../../utils/password.util.js';
 import { sendCoachOnboardingEmail } from '../../services/mail.service.js';
+import { logAudit } from '../../utils/audit.util.js';
 import logger from '../../utils/logger.js';
 
 const academyScope = (academy_id) => ({
@@ -45,6 +46,43 @@ const getPaymentForAcademy = async (academy_id, payment_id) =>
     },
     include: { student: true }
   });
+
+const assertStudentSportBatch = async (academy_id, sport_id, batch_id) => {
+  const sportId = parseInt(sport_id, 10);
+  const batchId = parseInt(batch_id, 10);
+  const batch = await getBatchForAcademy(academy_id, batchId);
+
+  if (!batch) {
+    const error = new Error('Batch not found');
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (batch.status !== 'ACTIVE') {
+    const error = new Error('Batch is not active');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  if (batch.sport_id !== sportId) {
+    const error = new Error('Batch does not match selected sport');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  if (batch.max_capacity != null) {
+    const enrolled = await prisma.student.count({
+      where: { batch_id: batchId, ...NOT_DELETED, status: 'ACTIVE' }
+    });
+    if (enrolled >= batch.max_capacity) {
+      const error = new Error('Batch has no available seats');
+      error.statusCode = 400;
+      throw error;
+    }
+  }
+
+  return batch;
+};
 
 // ==================== SPORTS ====================
 
@@ -153,12 +191,13 @@ export const getAllCoaches = async (academy_id) =>
 
 export const createCoach = async (academy_id, data) => {
   const academyId = parseInt(academy_id, 10);
+  const email = data.email.trim();
   const temporaryPassword = generateTempPassword(8);
   const password_hash = await bcrypt.hash(temporaryPassword, BCRYPT_SALT_ROUNDS);
 
   const existingCoach = await prisma.coach.findFirst({
     where: {
-      email: data.email,
+      email,
       academy_id: academyId,
       ...NOT_DELETED
     }
@@ -170,27 +209,62 @@ export const createCoach = async (academy_id, data) => {
     throw error;
   }
 
+  const deletedCoach = await prisma.coach.findFirst({
+    where: {
+      email,
+      academy_id: academyId,
+      is_deleted: true
+    }
+  });
+
+  if (deletedCoach) {
+    const error = new Error(
+      'A coach with this email was previously removed. Restore or use a different email.'
+    );
+    error.statusCode = 409;
+    throw error;
+  }
+
   const coach = await prisma.coach.create({
     data: {
       academy_id: academyId,
       name: data.name,
       specialization: data.specialization,
       phone_number: data.phone_number,
-      email: data.email,
+      email,
       password_hash
     }
   });
 
-  await sendCoachOnboardingEmail({
-    email: data.email,
-    name: data.name,
-    temporaryPassword
-  });
+  let credentials_sent = false;
 
-  logger.info('Coach provisioned with credentials email', {
-    coach_id: coach.coach_id,
-    academy_id: academyId
-  });
+  try {
+    await sendCoachOnboardingEmail({
+      email,
+      name: data.name,
+      temporaryPassword
+    });
+    credentials_sent = true;
+    logger.info('Coach provisioned with credentials email', {
+      coach_id: coach.coach_id,
+      academy_id: academyId,
+      email
+    });
+  } catch (mailError) {
+    logger.error('Coach created but onboarding email failed', {
+      coach_id: coach.coach_id,
+      academy_id: academyId,
+      email,
+      smtp_code: mailError.code,
+      message: mailError.message
+    });
+    const error = new Error(
+      'Coach account was created but the credentials email could not be sent. Check SMTP settings and try resending credentials.'
+    );
+    error.statusCode = 502;
+    error.coach_id = coach.coach_id;
+    throw error;
+  }
 
   return {
     coach_id: coach.coach_id,
@@ -198,7 +272,7 @@ export const createCoach = async (academy_id, data) => {
     email: coach.email,
     specialization: coach.specialization,
     phone_number: coach.phone_number,
-    credentials_sent: true
+    credentials_sent
   };
 };
 
@@ -256,6 +330,10 @@ export const getAllStudents = async (academy_id) =>
   });
 
 export const createStudent = async (academy_id, data) => {
+  if (data.sport_id && data.batch_id) {
+    await assertStudentSportBatch(academy_id, data.sport_id, data.batch_id);
+  }
+
   const student = await prisma.student.create({
     data: {
       academy_id: parseInt(academy_id, 10),
@@ -265,10 +343,21 @@ export const createStudent = async (academy_id, data) => {
       sport_id: data.sport_id ? parseInt(data.sport_id, 10) : null,
       batch_id: data.batch_id ? parseInt(data.batch_id, 10) : null,
       blood_group: data.blood_group,
+      parent_name: data.parent_name || null,
       parent_email: data.parent_email,
-      fees_status: data.fees_status || 'unpaid'
+      parent_phone: data.parent_phone || null,
+      fees_status: data.fees_status || 'unpaid',
+      status: 'ACTIVE'
     },
     include: { batch: true, sport: true }
+  });
+
+  await logAudit({
+    academy_id,
+    actor_type: 'ADMIN',
+    action: 'STUDENT_CREATED',
+    entity_type: 'Student',
+    entity_id: student.student_id
   });
 
   logger.info('Student created', { student_id: student.student_id, academy_id });
@@ -284,20 +373,64 @@ export const updateStudent = async (academy_id, student_id, data) => {
     throw error;
   }
 
+  const nextSportId =
+    data.sport_id !== undefined ? parseInt(data.sport_id, 10) : student.sport_id;
+  const nextBatchId =
+    data.batch_id !== undefined ? parseInt(data.batch_id, 10) : student.batch_id;
+
+  if (nextSportId && nextBatchId) {
+    await assertStudentSportBatch(academy_id, nextSportId, nextBatchId);
+  }
+
   return prisma.student.update({
     where: { student_id: student.student_id },
     data: {
       name: data.name ?? student.name,
       age: data.age ?? student.age,
       gender: data.gender ?? student.gender,
-      sport_id: data.sport_id !== undefined ? parseInt(data.sport_id, 10) : student.sport_id,
-      batch_id: data.batch_id !== undefined ? parseInt(data.batch_id, 10) : student.batch_id,
+      sport_id: nextSportId,
+      batch_id: nextBatchId,
       blood_group: data.blood_group ?? student.blood_group,
+      parent_name: data.parent_name ?? student.parent_name,
       parent_email: data.parent_email ?? student.parent_email,
+      parent_phone: data.parent_phone ?? student.parent_phone,
       fees_status: data.fees_status ?? student.fees_status
     },
     include: { batch: true, sport: true, payments: true }
   });
+};
+
+export const exitStudent = async (academy_id, student_id, data, admin_user_id) => {
+  const student = await getStudentForAcademy(academy_id, student_id);
+
+  if (!student) {
+    const error = new Error('Student not found');
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const updated = await prisma.student.update({
+    where: { student_id: student.student_id },
+    data: {
+      status: 'INACTIVE',
+      exit_reason: data.exit_reason,
+      exit_note: data.exit_note || null,
+      batch_id: null,
+      ...softDeletePayload()
+    }
+  });
+
+  await logAudit({
+    academy_id,
+    actor_type: 'ADMIN',
+    actor_id: admin_user_id,
+    action: 'STUDENT_EXIT',
+    entity_type: 'Student',
+    entity_id: student.student_id,
+    metadata: { exit_reason: data.exit_reason }
+  });
+
+  return updated;
 };
 
 export const deleteStudent = async (academy_id, student_id) => {
@@ -325,15 +458,32 @@ export const getAllBatches = async (academy_id) => {
     include: {
       coach: true,
       sport: true,
-      students: { where: NOT_DELETED }
+      students: { where: { ...NOT_DELETED, status: 'ACTIVE' } }
     },
     orderBy: { batch_id: 'desc' }
   });
 
   return batches.map((batch) => ({
     ...batch,
-    coach: batch.coach && batch.coach.is_deleted ? null : batch.coach
+    coach: batch.coach && batch.coach.is_deleted ? null : batch.coach,
+    enrolled_count: batch.students.length,
+    available_seats:
+      batch.max_capacity != null
+        ? Math.max(0, batch.max_capacity - batch.students.length)
+        : null
   }));
+};
+
+export const getAvailableBatches = async (academy_id, sport_id) => {
+  const sportId = parseInt(sport_id, 10);
+  const batches = await getAllBatches(academy_id);
+
+  return batches.filter(
+    (batch) =>
+      batch.status === 'ACTIVE' &&
+      batch.sport_id === sportId &&
+      (batch.max_capacity == null || batch.students.length < batch.max_capacity)
+  );
 };
 
 export const createBatch = async (academy_id, data) => {
@@ -354,7 +504,9 @@ export const createBatch = async (academy_id, data) => {
       name: data.name,
       coach_id: data.coach_id ? parseInt(data.coach_id, 10) : null,
       sport_id: data.sport_id ? parseInt(data.sport_id, 10) : null,
-      timing: data.timing
+      timing: data.timing,
+      max_capacity: data.max_capacity ? parseInt(data.max_capacity, 10) : null,
+      status: data.status || 'ACTIVE'
     },
     include: { coach: true, sport: true }
   });
@@ -378,7 +530,12 @@ export const updateBatch = async (academy_id, batch_id, data) => {
       name: data.name ?? batch.name,
       coach_id: data.coach_id !== undefined ? parseInt(data.coach_id, 10) : batch.coach_id,
       sport_id: data.sport_id !== undefined ? parseInt(data.sport_id, 10) : batch.sport_id,
-      timing: data.timing ?? batch.timing
+      timing: data.timing ?? batch.timing,
+      max_capacity:
+        data.max_capacity !== undefined
+          ? parseInt(data.max_capacity, 10)
+          : batch.max_capacity,
+      status: data.status ?? batch.status
     },
     include: { coach: true, sport: true }
   });
@@ -393,11 +550,22 @@ export const deleteBatch = async (academy_id, batch_id) => {
     throw error;
   }
 
-  await prisma.batch.delete({
-    where: { batch_id: batch.batch_id }
+  const enrolled = await prisma.student.count({
+    where: { batch_id: batch.batch_id, ...NOT_DELETED, status: 'ACTIVE' }
   });
 
-  logger.info('Batch deleted', { batch_id, academy_id });
+  if (enrolled > 0) {
+    const error = new Error('Cannot delete batch with enrolled students. Reassign students first.');
+    error.statusCode = 400;
+    throw error;
+  }
+
+  await prisma.batch.update({
+    where: { batch_id: batch.batch_id },
+    data: { status: 'INACTIVE' }
+  });
+
+  logger.info('Batch deactivated', { batch_id, academy_id });
 };
 
 // ==================== COACH ATTENDANCE ====================
@@ -473,17 +641,30 @@ export const createPayment = async (academy_id, data) => {
     }
   });
 
-  if (data.status === 'completed' || data.status === 'paid') {
+  if (data.status === 'completed') {
     await prisma.student.update({
       where: { student_id: student.student_id },
       data: { fees_status: 'paid' }
     });
   }
 
+  await logAudit({
+    academy_id,
+    actor_type: 'ADMIN',
+    action: 'PAYMENT_CREATED',
+    entity_type: 'Payment',
+    entity_id: payment.payment_id
+  });
+
   return payment;
 };
 
-export const updatePaymentStatus = async (academy_id, payment_id, status) => {
+export const updatePaymentStatus = async (
+  academy_id,
+  payment_id,
+  { status, rejected_reason },
+  admin_user_id
+) => {
   const payment = await getPaymentForAcademy(academy_id, payment_id);
 
   if (!payment) {
@@ -494,7 +675,11 @@ export const updatePaymentStatus = async (academy_id, payment_id, status) => {
 
   const updatedPayment = await prisma.payment.update({
     where: { payment_id: payment.payment_id },
-    data: { status }
+    data: {
+      status,
+      approved_by_user_id: status === 'completed' ? admin_user_id : payment.approved_by_user_id,
+      rejected_reason: status === 'rejected' ? rejected_reason || null : null
+    }
   });
 
   if (status === 'completed') {
@@ -502,7 +687,22 @@ export const updatePaymentStatus = async (academy_id, payment_id, status) => {
       where: { student_id: payment.student_id },
       data: { fees_status: 'paid' }
     });
+  } else if (status === 'rejected') {
+    await prisma.student.update({
+      where: { student_id: payment.student_id },
+      data: { fees_status: 'unpaid' }
+    });
   }
+
+  await logAudit({
+    academy_id,
+    actor_type: 'ADMIN',
+    actor_id: admin_user_id,
+    action: 'PAYMENT_STATUS_UPDATED',
+    entity_type: 'Payment',
+    entity_id: payment.payment_id,
+    metadata: { status }
+  });
 
   return updatedPayment;
 };
@@ -514,17 +714,21 @@ export const getAcademyReport = async (academy_id) => {
   const activeStudentFilter = { academy_id: academyId, ...NOT_DELETED };
   const activeCoachFilter = { academy_id: academyId, ...NOT_DELETED };
 
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+
   const [
     activeCoaches,
     activeStudents,
     totalBatches,
     revenueAggregate,
     paidStudents,
-    unpaidStudents
+    unpaidStudents,
+    attendanceAgg
   ] = await Promise.all([
     prisma.coach.count({ where: activeCoachFilter }),
-    prisma.student.count({ where: activeStudentFilter }),
-    prisma.batch.count({ where: { academy_id: academyId } }),
+    prisma.student.count({ where: { ...activeStudentFilter, status: 'ACTIVE' } }),
+    prisma.batch.count({ where: { academy_id: academyId, status: 'ACTIVE' } }),
     prisma.payment.aggregate({
       where: {
         academy_id: academyId,
@@ -541,14 +745,39 @@ export const getAcademyReport = async (academy_id) => {
         ...activeStudentFilter,
         fees_status: { in: ['unpaid', 'pending', 'partial'] }
       }
+    }),
+    prisma.studentAttendance.groupBy({
+      by: ['status'],
+      where: {
+        academy_id: academyId,
+        date: { gte: thirtyDaysAgo }
+      },
+      _count: { status: true }
     })
   ]);
+
+  const attendanceCounts = attendanceAgg.reduce(
+    (acc, row) => {
+      acc[row.status] = row._count.status;
+      acc.total += row._count.status;
+      return acc;
+    },
+    { total: 0 }
+  );
+
+  const presentCount =
+    (attendanceCounts.PRESENT || 0) + (attendanceCounts.LATE || 0);
+  const attendancePercent =
+    attendanceCounts.total > 0
+      ? Math.round((presentCount / attendanceCounts.total) * 100)
+      : 0;
 
   return {
     active_coach_count: activeCoaches,
     active_student_count: activeStudents,
     total_batches: totalBatches,
     total_revenue: revenueAggregate._sum.amount || 0,
+    attendance_percent: attendancePercent,
     payment_summary: {
       paid_students: paidStudents,
       unpaid_students: unpaidStudents

@@ -3,11 +3,23 @@ import { successResponse } from '../../utils/response.js';
 
 export const getMyBatches = async (req, res, next) => {
   try {
-    const batches = await coachService.getCoachBatches(
+    const data = await coachService.getCoachBatches(
       req.user.coach_id,
       req.user.academy_id
     );
-    res.json(successResponse('Assigned batches retrieved successfully', batches));
+    res.json(successResponse('Assigned batches retrieved successfully', data));
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getDashboard = async (req, res, next) => {
+  try {
+    const data = await coachService.getCoachDashboard(
+      req.user.coach_id,
+      req.user.academy_id
+    );
+    res.json(successResponse('Coach dashboard loaded', data));
   } catch (err) {
     next(err);
   }
