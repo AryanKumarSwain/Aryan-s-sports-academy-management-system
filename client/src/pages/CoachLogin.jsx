@@ -11,7 +11,7 @@ export default function CoachLogin() {
 
   useEffect(() => {
     if (getCoachToken()) {
-      navigate('/coach', { replace: true });
+      navigate('/coach/dashboard', { replace: true });
     }
   }, [navigate]);
 
@@ -30,7 +30,7 @@ export default function CoachLogin() {
         password: form.password
       });
       setMessage({ text: 'Login successful. Opening coach portal…', type: 'success' });
-      setTimeout(() => navigate('/coach'), 600);
+      setTimeout(() => navigate('/coach/dashboard'), 600);
     } catch (error) {
       setMessage({ text: error.message, type: 'error' });
     } finally {
@@ -79,6 +79,11 @@ export default function CoachLogin() {
               autoComplete="current-password"
             />
           </div>
+          <p className="text-right">
+            <Link to="/forgot-password" className="text-sm font-medium text-accent">
+              Forgot password?
+            </Link>
+          </p>
           <button type="submit" className="btn-primary w-full" disabled={loading}>
             {loading ? 'Verifying credentials…' : 'Sign In'}
           </button>

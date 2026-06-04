@@ -106,6 +106,22 @@ export default function StudentsPanel() {
     }
   };
 
+  const handleExit = async (studentId) => {
+    const exit_reason = window.prompt('Exit reason (required):');
+    if (!exit_reason?.trim()) return;
+    const exit_note = window.prompt('Exit note (optional):') || undefined;
+    try {
+      const result = await adminPost(`/admin/students/${studentId}/exit`, {
+        exit_reason: exit_reason.trim(),
+        exit_note
+      });
+      setMessage({ text: result.message, type: 'success' });
+      loadData();
+    } catch (error) {
+      setMessage({ text: error.message, type: 'error' });
+    }
+  };
+
   const handleRemove = async (studentId) => {
     if (!window.confirm('Archive this student? Record will be soft-deleted.')) {
       return;
@@ -252,7 +268,10 @@ export default function StudentsPanel() {
                           {student.fees_status}
                         </span>
                       </td>
-                      <td>
+                      <td className="space-x-1">
+                        <button type="button" className="btn-secondary btn-sm" onClick={() => handleExit(student.student_id)}>
+                          Exit
+                        </button>
                         <button type="button" className="btn-danger btn-sm" onClick={() => handleRemove(student.student_id)}>
                           Remove
                         </button>

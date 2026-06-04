@@ -119,6 +119,40 @@ export const sendCoachOnboardingEmail = async ({ email, name, temporaryPassword 
   return sendMail({ to: email, subject, html, text });
 };
 
+export const sendAdminWelcomeEmail = async ({
+  email,
+  name,
+  academyName,
+  temporaryPassword
+}) => {
+  const loginUrl = process.env.APP_URL || 'http://localhost:5000';
+  const subject = 'Welcome to SAMS — Your Academy Admin Credentials';
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #1a56db;">Sports Academy Management System</h2>
+      <p>Hello <strong>${name}</strong>,</p>
+      <p>Your academy <strong>${academyName}</strong> is ready.</p>
+      <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+        <tr><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Login URL</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;"><a href="${loginUrl}/login/admin">${loginUrl}/login/admin</a></td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Email</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;">${email}</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #e5e7eb;"><strong>Password</strong></td><td style="padding: 8px; border: 1px solid #e5e7eb;"><code>${temporaryPassword}</code></td></tr>
+      </table>
+      <p>Please change your password after your first login.</p>
+    </div>
+  `;
+
+  const text = [
+    `Hello ${name},`,
+    `Academy: ${academyName}`,
+    `Login: ${loginUrl}/login/admin`,
+    `Email: ${email}`,
+    `Password: ${temporaryPassword}`
+  ].join('\n');
+
+  return sendMail({ to: email, subject, html, text });
+};
+
 export const sendPasswordResetEmail = async ({ email, name, code, expiresMinutes }) => {
   const subject = 'SAMS — Password Reset Verification Code';
 
@@ -190,4 +224,98 @@ export const sendParentAttendanceEmail = async ({
   if (remarks) text.push(`Remarks: ${remarks}`);
 
   return sendMail({ to: parentEmail, subject, html, text: text.join('\n') });
+};
+
+export const sendParentDailyNoteEmail = async ({
+  parentEmail,
+  studentName,
+  batchName,
+  note
+}) => {
+  const subject = `Training Update — ${studentName}`;
+  const sections = [
+    ['Performance', note.performance_notes],
+    ['Behaviour', note.behaviour_notes],
+    ['Achievements', note.achievements],
+    ['Areas to improve', note.improvement_areas]
+  ].filter(([, value]) => value);
+
+  const listHtml = sections
+    .map(([label, value]) => `<li><strong>${label}:</strong> ${value}</li>`)
+    .join('');
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #1a56db;">Coach Daily Notes</h2>
+      <p>Dear Parent/Guardian,</p>
+      <p>Your coach shared an update for <strong>${studentName}</strong>${batchName ? ` (${batchName})` : ''}:</p>
+      <ul>${listHtml}</ul>
+      <p style="color: #6b7280; font-size: 12px;">Automated message from your Sports Academy.</p>
+    </div>
+  `;
+
+  const text = [
+    `Daily notes for ${studentName}:`,
+    ...sections.map(([label, value]) => `${label}: ${value}`)
+  ].join('\n');
+
+  return sendMail({ to: parentEmail, subject, html, text });
+};
+
+export const sendStudentExitEmail = async ({
+  parentEmail,
+  studentName,
+  exitReason,
+  exitNote
+}) => {
+  const subject = `Academy Exit — ${studentName}`;
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #b45309;">Student Exit Notice</h2>
+      <p>Dear Parent/Guardian,</p>
+      <p>This confirms that <strong>${studentName}</strong> has exited the academy program.</p>
+      <p><strong>Reason:</strong> ${exitReason}</p>
+      ${exitNote ? `<p><strong>Note:</strong> ${exitNote}</p>` : ''}
+      <p>Thank you for being part of our academy.</p>
+    </div>
+  `;
+  const text = [
+    `${studentName} has exited the academy.`,
+    `Reason: ${exitReason}`,
+    exitNote ? `Note: ${exitNote}` : ''
+  ]
+    .filter(Boolean)
+    .join('\n');
+
+  return sendMail({ to: parentEmail, subject, html, text });
+};
+
+export const sendCoachAbsenceAlertToAdmin = async ({
+  adminEmail,
+  coachName,
+  date,
+  batches
+}) => {
+  const subject = `Coach Absence Alert — ${coachName}`;
+  const batchList =
+    batches?.length > 0
+      ? batches.map((b) => `<li>${b.name} (${b.timing || 'no time'})</li>`).join('')
+      : '<li>No batches listed</li>';
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #dc2626;">Coach Absent Today</h2>
+      <p><strong>${coachName}</strong> marked absent on ${date}.</p>
+      <p>Affected batches:</p>
+      <ul>${batchList}</ul>
+      <p>Please arrange coverage or manual attendance if needed.</p>
+    </div>
+  `;
+
+  return sendMail({
+    to: adminEmail,
+    subject,
+    html,
+    text: `Coach ${coachName} is absent on ${date}. Check the admin dashboard for affected batches.`
+  });
 };

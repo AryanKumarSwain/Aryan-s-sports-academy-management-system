@@ -1,12 +1,26 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import { AdminRoute, CoachRoute, SuperAdminRoute } from './components/ProtectedRoute';
+import AdminLayout from './layouts/AdminLayout';
+import CoachLayout from './layouts/CoachLayout';
 import LandingPage from './pages/LandingPage';
-import AdminDashboard from './pages/AdminDashboard';
+import AdminLogin from './pages/AdminLogin';
 import CoachLogin from './pages/CoachLogin';
-import CoachPortal from './pages/CoachPortal';
 import SuperAdminLogin from './pages/SuperAdminLogin';
 import SuperAdminDashboard from './pages/SuperAdminDashboard';
+import AdminDashboardPage from './pages/admin/AdminDashboardPage.jsx';
+import SportsPanel from './pages/admin/SportsPanel';
+import CoachesPanel from './pages/admin/CoachesPanel';
+import StudentsPanel from './pages/admin/StudentsPanel';
+import BatchesPanel from './pages/admin/BatchesPanel';
+import PaymentsPanel from './pages/admin/PaymentsPanel';
+import ReportsPanel from './pages/admin/ReportsPanel';
+import ForgotPassword from './pages/ForgotPassword.jsx';
+import CoachDashboardPage from './pages/coach/CoachDashboardPage';
+import CoachAttendancePage from './pages/coach/CoachAttendancePage';
+import CoachNotesPage from './pages/coach/CoachNotesPage';
+import CoachFeesPage from './pages/coach/CoachFeesPage';
+import CoachMyAttendancePage from './pages/coach/CoachMyAttendancePage';
 
 export default function App() {
   return (
@@ -14,24 +28,52 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/login/admin" element={<AdminLogin />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/signup" element={<LandingPage />} />
+
+          <Route path="/dashboard" element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="/dashboard/*" element={<Navigate to="/admin/dashboard" replace />} />
+
           <Route
-            path="/dashboard"
+            path="/admin"
             element={
               <AdminRoute>
-                <AdminDashboard />
+                <AdminLayout />
               </AdminRoute>
             }
-          />
+          >
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<AdminDashboardPage />} />
+            <Route path="sports" element={<SportsPanel />} />
+            <Route path="coaches" element={<CoachesPanel />} />
+            <Route path="students" element={<StudentsPanel />} />
+            <Route path="batches" element={<BatchesPanel />} />
+            <Route path="accounts" element={<PaymentsPanel />} />
+            <Route path="payments" element={<Navigate to="/admin/accounts" replace />} />
+            <Route path="reports" element={<ReportsPanel />} />
+            <Route path="import" element={<Navigate to="/admin/students" replace />} />
+            <Route path="analytics" element={<Navigate to="/admin/dashboard" replace />} />
+          </Route>
+
           <Route path="/coach/login" element={<CoachLogin />} />
-          <Route path="/super-admin-login" element={<SuperAdminLogin />} />
           <Route
             path="/coach"
             element={
               <CoachRoute>
-                <CoachPortal />
+                <CoachLayout />
               </CoachRoute>
             }
-          />
+          >
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<CoachDashboardPage />} />
+            <Route path="attendance" element={<CoachAttendancePage />} />
+            <Route path="notes" element={<CoachNotesPage />} />
+            <Route path="fees" element={<CoachFeesPage />} />
+            <Route path="my-attendance" element={<CoachMyAttendancePage />} />
+          </Route>
+
+          <Route path="/super-admin-login" element={<SuperAdminLogin />} />
           <Route
             path="/super-admin/dashboard"
             element={
@@ -40,6 +82,7 @@ export default function App() {
               </SuperAdminRoute>
             }
           />
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

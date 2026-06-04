@@ -88,6 +88,14 @@ export async function coachLogin(body) {
   return data;
 }
 
+export async function forgotPassword(body) {
+  return api.post('/auth/forgot-password', body).then(unwrap);
+}
+
+export async function resetPassword(body) {
+  return api.post('/auth/reset-password', body).then(unwrap);
+}
+
 export async function adminGet(path) {
   return api
     .get(path, {
@@ -160,6 +168,10 @@ export async function superAdminPatch(path, body) {
     .then(unwrap);
 }
 
+export async function publicPost(path, body) {
+  return api.post(path, body).then(unwrap);
+}
+
 export const TIMING_OPTIONS = [
   '06:00', '06:30', '07:00', '07:30', '08:00', '08:30', '09:00', '09:30',
   '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
@@ -169,11 +181,11 @@ export const TIMING_OPTIONS = [
 
 export const PRICING_PLANS = [
   {
-    id: 'basic',
-    name: 'Basic',
-    price: 29,
+    id: 'free',
+    name: 'Free',
+    price: 0,
     coaches: 3,
-    students: 50,
+    students: 30,
     featured: false,
     features: ['Batch scheduling', 'Email notifications', 'Standard support']
   },
@@ -181,14 +193,14 @@ export const PRICING_PLANS = [
     id: 'pro',
     name: 'Pro',
     price: 79,
-    coaches: 15,
-    students: 300,
+    coaches: 6,
+    students: 80,
     featured: true,
     features: ['Advanced analytics', 'Payment tracking', 'Priority support']
   },
   {
-    id: 'enterprise',
-    name: 'Enterprise',
+    id: 'plus',
+    name: 'Plus',
     price: 199,
     coaches: 'Unlimited',
     students: 'Unlimited',

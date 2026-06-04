@@ -1,6 +1,7 @@
 import express from 'express';
 import * as adminController from './admin.controller.js';
 import { authenticate, authorize } from '../../middlewares/auth.middleware.js';
+import { enforceActiveSubscription } from '../../middlewares/subscription.middleware.js';
 import { validationErrorHandler } from '../../middlewares/validation.middleware.js';
 import { validate } from './admin.validator.js';
 
@@ -8,6 +9,7 @@ const router = express.Router();
 
 router.use(authenticate);
 router.use(authorize('ADMIN', 'ACADEMY_ADMIN'));
+router.use(enforceActiveSubscription);
 
 router.get('/sports', adminController.getSportsCatalog);
 router.post('/sports', validate('createSport'), validationErrorHandler, adminController.createCustomSport);
@@ -39,9 +41,13 @@ router.post('/coach-attendance', validate('markAttendance'), validationErrorHand
 router.get('/coach-attendance/:coach_id', adminController.getCoachAttendance);
 
 router.get('/payments', adminController.getAllPayments);
+router.get('/accounts', adminController.getAllPayments);
 router.post('/payments', validate('createPayment'), validationErrorHandler, adminController.createPayment);
+router.post('/accounts', validate('createPayment'), validationErrorHandler, adminController.createPayment);
 router.patch('/payments/:payment_id/status', validate('updatePaymentStatus'), validationErrorHandler, adminController.updatePaymentStatus);
+router.patch('/accounts/:payment_id/status', validate('updatePaymentStatus'), validationErrorHandler, adminController.updatePaymentStatus);
 
 router.get('/analytics', adminController.getAcademyReport);
+router.get('/dashboard', adminController.getAcademyReport);
 
 export default router;

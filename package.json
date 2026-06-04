@@ -12,9 +12,11 @@
     "dev:client": "npm run dev --prefix client",
     "build:client": "npm run build --prefix client",
     "dev:full": "npm run build:client && npm start",
+    "dev:legacy": "npm run build:client && npm start",
     "icons": "node scripts/generate-pwa-icons.js",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
     "db:seed": "node prisma/seed.js"
   },
   "keywords": [],

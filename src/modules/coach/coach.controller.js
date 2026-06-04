@@ -25,6 +25,34 @@ export const getDashboard = async (req, res, next) => {
   }
 };
 
+export const recordPayment = async (req, res, next) => {
+  try {
+    const payment = await coachService.recordCoachPayment(
+      req.user.coach_id,
+      req.user.academy_id,
+      req.body
+    );
+    res.status(201).json(
+      successResponse('Payment recorded and pending admin approval', payment)
+    );
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const markSelfAttendance = async (req, res, next) => {
+  try {
+    const record = await coachService.markCoachSelfAttendance(
+      req.user.coach_id,
+      req.user.academy_id,
+      req.body
+    );
+    res.json(successResponse('Coach attendance recorded', record));
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const markAttendance = async (req, res, next) => {
   try {
     const result = await coachService.markStudentAttendance(

@@ -1,6 +1,9 @@
 import prisma from '../../config/prisma.js';
 import { NOT_DELETED } from '../../utils/softDelete.util.js';
-import { sendParentAttendanceEmail } from '../../services/mail.service.js';
+import {
+  sendCoachAbsenceAlertToAdmin,
+  sendParentAttendanceEmail
+} from '../../services/mail.service.js';
 import { logAudit } from '../../utils/audit.util.js';
 import logger from '../../utils/logger.js';
 
@@ -226,4 +229,116 @@ export const markStudentAttendance = async (coach_id, academy_id, payload) => {
     marked_count: results.length,
     attendance_records: results
   };
+};
+
+export const recordCoachPayment = async (coach_id, academy_id, payload) => {
+  const coachId = parseInt(coach_id, 10);
+  const academyId = parseInt(academy_id, 10);
+  const studentId = parseInt(payload.student_id, 10);
+
+  const student = await prisma.student.findFirst({
+    where: {
+      student_id: studentId,
+      academy_id: academyId,
+      ...NOT_DELETED,
+      status: 'ACTIVE'
+    },
+    include: { batch: true }
+  });
+
+  if (!student?.batch || student.batch.coach_id !== coachId) {
+    const error = new Error('Student not found in your assigned batches');
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const payment = await prisma.payment.create({
+    data: {
+      academy_id: academyId,
+      student_id: studentId,
+      amount: payload.amount,
+      payment_date: payload.payment_date ? new Date(payload.payment_date) : new Date(),
+      method: payload.method || 'cash',
+      status: 'pending',
+      remarks: payload.remarks || null,
+      proof_url: payload.proof_url || null,
+      collected_by_coach_id: coachId
+    }
+  });
+
+  await logAudit({
+    academy_id: academyId,
+    actor_type: 'COACH',
+    actor_id: coachId,
+    action: 'PAYMENT_RECORDED',
+    entity_type: 'Payment',
+    entity_id: payment.payment_id,
+    metadata: { student_id: studentId, amount: payload.amount }
+  });
+
+  return payment;
+};
+
+export const markCoachSelfAttendance = async (coach_id, academy_id, payload) => {
+  const coachId = parseInt(coach_id, 10);
+  const academyId = parseInt(academy_id, 10);
+  const attendanceDate = payload.date ? new Date(payload.date) : new Date();
+  attendanceDate.setHours(0, 0, 0, 0);
+  const status = String(payload.status || 'PRESENT').toUpperCase();
+
+  const attendance = await prisma.coachAttendance.upsert({
+    where: {
+      coach_id_date: {
+        coach_id: coachId,
+        date: attendanceDate
+      }
+    },
+    create: {
+      coach_id: coachId,
+      academy_id: academyId,
+      date: attendanceDate,
+      status,
+      remarks: payload.remarks || null
+    },
+    update: {
+      status,
+      remarks: payload.remarks || null
+    }
+  });
+
+  if (status === 'ABSENT' || status === 'absent') {
+    const coach = await prisma.coach.findUnique({
+      where: { coach_id: coachId },
+      include: {
+        batches: { where: { status: 'ACTIVE' } },
+        academy: {
+          include: {
+            users: { where: { ...NOT_DELETED, role: 'ADMIN' }, take: 1 }
+          }
+        }
+      }
+    });
+
+    const adminEmail = coach?.academy?.users?.[0]?.email;
+    if (adminEmail) {
+      await sendCoachAbsenceAlertToAdmin({
+        adminEmail,
+        coachName: coach.name,
+        date: attendanceDate.toISOString().slice(0, 10),
+        batches: coach.batches
+      }).catch((err) => {
+        logger.error('Coach absence alert failed', { message: err.message });
+      });
+    }
+  }
+
+  await logAudit({
+    academy_id: academyId,
+    actor_type: 'COACH',
+    actor_id: coachId,
+    action: 'COACH_SELF_ATTENDANCE',
+    metadata: { status, date: attendanceDate }
+  });
+
+  return attendance;
 };

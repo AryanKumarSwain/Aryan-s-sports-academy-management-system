@@ -43,3 +43,31 @@ export const coachLogin = async (req, res, next) => {
     next(error);
   }
 };
+
+export const forgotPassword = async (req, res, next) => {
+  try {
+    await authService.requestPasswordReset({ email: req.body.email });
+    return res.status(200).json(
+      successResponse(
+        'If an account exists for this email, a verification code has been sent.'
+      )
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resetPassword = async (req, res, next) => {
+  try {
+    await authService.resetPasswordWithCode({
+      email: req.body.email,
+      code: req.body.code,
+      newPassword: req.body.new_password
+    });
+    return res.status(200).json(
+      successResponse('Password updated successfully. You can sign in now.')
+    );
+  } catch (error) {
+    next(error);
+  }
+};

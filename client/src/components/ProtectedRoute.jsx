@@ -6,7 +6,7 @@ export function AdminRoute({ children }) {
   const token = getAdminToken();
 
   if (!token) {
-    return <Navigate to="/" state={{ from: location }} replace />;
+    return <Navigate to="/login/admin" state={{ from: location }} replace />;
   }
 
   return children;

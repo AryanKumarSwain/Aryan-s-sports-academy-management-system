@@ -41,6 +41,28 @@ export const validate = (method) => {
           .withMessage('Password is required')
       ];
 
+    case 'forgotPassword':
+      return [
+        body('email')
+          .isEmail()
+          .withMessage('Invalid email format')
+      ];
+
+    case 'resetPassword':
+      return [
+        body('email')
+          .isEmail()
+          .withMessage('Invalid email format'),
+        body('code')
+          .isString()
+          .trim()
+          .isLength({ min: 6, max: 6 })
+          .withMessage('Verification code must be 6 digits'),
+        body('new_password')
+          .isLength({ min: 6 })
+          .withMessage('Password must be at least 6 characters')
+      ];
+
     default:
       return [];
   }

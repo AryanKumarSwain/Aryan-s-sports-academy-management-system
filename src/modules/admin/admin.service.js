@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import { BCRYPT_SALT_ROUNDS } from '../../config/app.config.js';
 import { NOT_DELETED, softDeletePayload } from '../../utils/softDelete.util.js';
 import { generateTempPassword } from '../../utils/password.util.js';
-import { sendCoachOnboardingEmail } from '../../services/mail.service.js';
+import { sendCoachOnboardingEmail, sendStudentExitEmail } from '../../services/mail.service.js';
 import { logAudit } from '../../utils/audit.util.js';
 import logger from '../../utils/logger.js';
 
@@ -419,6 +419,22 @@ export const exitStudent = async (academy_id, student_id, data, admin_user_id) =
       ...softDeletePayload()
     }
   });
+
+  if (student.parent_email) {
+    try {
+      await sendStudentExitEmail({
+        parentEmail: student.parent_email,
+        studentName: student.name,
+        exitReason: data.exit_reason,
+        exitNote: data.exit_note
+      });
+    } catch (mailErr) {
+      logger.error('Student exit email failed', {
+        student_id: student.student_id,
+        message: mailErr.message
+      });
+    }
+  }
 
   await logAudit({
     academy_id,

@@ -8,5 +8,17 @@ const router = express.Router();
 router.post('/signup', validate('signup'), validationErrorHandler, authController.signup);
 router.post('/login', validate('login'), validationErrorHandler, authController.login);
 router.post('/coach/login', validate('login'), validationErrorHandler, authController.coachLogin);
+router.post(
+  '/forgot-password',
+  validate('forgotPassword'),
+  validationErrorHandler,
+  authController.forgotPassword
+);
+router.post(
+  '/reset-password',
+  validate('resetPassword'),
+  validationErrorHandler,
+  authController.resetPassword
+);
 
 export default router;

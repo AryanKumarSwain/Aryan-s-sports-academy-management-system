@@ -9,6 +9,7 @@ export const getTemplate = (req, res) => {
   res.send(csv);
 };
 
+
 export const validateImport = async (req, res, next) => {
   try {
     const result = await importService.validateImportRows(

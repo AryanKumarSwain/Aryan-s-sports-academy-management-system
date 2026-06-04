@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar, { NavbarActions } from '../components/Navbar';
 import { usePwaInstall } from '../hooks/usePwaInstall';
-import { adminLogin, PRICING_PLANS, signup } from '../api/client';
+import { PRICING_PLANS, publicPost, signup } from '../api/client';
 
 const initialSignup = {
   name: '',
@@ -10,33 +10,41 @@ const initialSignup = {
   password: '',
   academy_name: '',
   phone_number: '',
-  subscription_plan: 'pro'
+  subscription_plan: 'free'
 };
 
-const initialLogin = {
-  email: '',
-  password: ''
-};
+const SPORTS = ['Cricket', 'Football', 'Basketball', 'Tennis', 'Badminton', 'Swimming'];
+const FACILITIES = [
+  'Professional turf & nets',
+  'Fitness & recovery zone',
+  'Locker rooms & hydration stations',
+  'Parent viewing gallery'
+];
+const TESTIMONIALS = [
+  ['Rajesh K.', 'Parent', 'Attendance alerts give us peace of mind every training day.'],
+  ['Coach Meera', 'Head Coach', 'Batch scheduling and fee tracking saved hours every week.'],
+  ['Elite Sports Club', 'Academy Admin', 'We scaled from one branch to three without spreadsheets.']
+];
 
 export default function LandingPage() {
   const navigate = useNavigate();
   const { isInstallable, installHint, promptInstall } = usePwaInstall();
 
   const [signupForm, setSignupForm] = useState(initialSignup);
-  const [loginForm, setLoginForm] = useState(initialLogin);
   const [signupLoading, setSignupLoading] = useState(false);
-  const [loginLoading, setLoginLoading] = useState(false);
   const [signupMessage, setSignupMessage] = useState({ text: '', type: '' });
-  const [loginMessage, setLoginMessage] = useState({ text: '', type: '' });
+  const [contactForm, setContactForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [contactLoading, setContactLoading] = useState(false);
+  const [contactMessage, setContactMessage] = useState({ text: '', type: '' });
 
   const handleSignupChange = (event) => {
     const { name, value } = event.target;
     setSignupForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLoginChange = (event) => {
+  const handleContactChange = (event) => {
     const { name, value } = event.target;
-    setLoginForm((prev) => ({ ...prev, [name]: value }));
+    setContactForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const selectPlan = (planId) => {
@@ -62,7 +70,7 @@ export default function LandingPage() {
         subscription_plan: signupForm.subscription_plan
       });
       setSignupMessage({ text: `${result.message} Redirecting…`, type: 'success' });
-      setTimeout(() => navigate('/dashboard'), 1000);
+      setTimeout(() => navigate('/admin/coaches'), 1000);
     } catch (error) {
       setSignupMessage({ text: error.message, type: 'error' });
     } finally {
@@ -70,38 +78,38 @@ export default function LandingPage() {
     }
   };
 
-  const handleLoginSubmit = async (event) => {
+  const handleContactSubmit = async (event) => {
     event.preventDefault();
-    setLoginLoading(true);
-    setLoginMessage({ text: '', type: '' });
-
+    setContactLoading(true);
+    setContactMessage({ text: '', type: '' });
     try {
-      await adminLogin({
-        email: loginForm.email.trim(),
-        password: loginForm.password
+      const result = await publicPost('/public/contact', {
+        name: contactForm.name.trim(),
+        email: contactForm.email.trim(),
+        phone: contactForm.phone.trim() || undefined,
+        message: contactForm.message.trim()
       });
-      setLoginMessage({ text: 'Login successful. Redirecting…', type: 'success' });
-      setTimeout(() => navigate('/dashboard'), 700);
+      setContactMessage({ text: result.message, type: 'success' });
+      setContactForm({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
-      setLoginMessage({ text: error.message, type: 'error' });
+      setContactMessage({ text: error.message, type: 'error' });
     } finally {
-      setLoginLoading(false);
+      setContactLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen bg-surface">
       <Navbar>
-        <nav className="hidden items-center gap-6 md:flex">
-          <a href="#features" className="text-sm font-medium text-muted hover:text-foreground">
-            Features
-          </a>
-          <a href="#pricing" className="text-sm font-medium text-muted hover:text-foreground">
-            Pricing
-          </a>
-          <a href="#signup" className="text-sm font-medium text-muted hover:text-foreground">
-            Get Started
-          </a>
+        <nav className="hidden items-center gap-5 md:flex">
+          <a href="#about" className="text-sm font-medium text-muted hover:text-foreground">About</a>
+          <a href="#sports" className="text-sm font-medium text-muted hover:text-foreground">Sports</a>
+          <a href="#facilities" className="text-sm font-medium text-muted hover:text-foreground">Facilities</a>
+          <a href="#testimonials" className="text-sm font-medium text-muted hover:text-foreground">Testimonials</a>
+          <a href="#contact" className="text-sm font-medium text-muted hover:text-foreground">Contact</a>
+          <Link to="/login/admin" className="text-sm font-medium text-muted hover:text-foreground">
+            Admin Login
+          </Link>
           <Link to="/coach/login" className="text-sm font-medium text-muted hover:text-foreground">
             Coach Login
           </Link>
@@ -112,9 +120,12 @@ export default function LandingPage() {
               Install App
             </button>
           )}
-          <Link to="/dashboard" className="btn-secondary">
-            Admin Dashboard
+          <Link to="/login/admin" className="btn-secondary">
+            Admin Login
           </Link>
+          <a href="#signup" className="btn-primary">
+            Admin Signup
+          </a>
         </NavbarActions>
       </Navbar>
 
@@ -177,6 +188,82 @@ export default function LandingPage() {
         </div>
       </section>
 
+      <section id="about" className="border-t border-border bg-surface-secondary px-4 py-16">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-3xl font-extrabold">About Our Academy Platform</h2>
+          <p className="mt-4 text-lg text-muted">
+            SAMS helps sports academies run operations end-to-end — from coach onboarding and batch scheduling
+            to fee collection, parent communication, and performance insights. Built for multi-branch academies
+            that need reliability, security, and a professional parent experience.
+          </p>
+        </div>
+      </section>
+
+      <section id="sports" className="px-4 py-16">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-8 text-center text-3xl font-extrabold">Sports Offered</h2>
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {SPORTS.map((sport) => (
+              <article key={sport} className="card text-center font-semibold">
+                {sport}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="facilities" className="bg-surface-secondary px-4 py-16">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-8 text-center text-3xl font-extrabold">World-Class Facilities</h2>
+          <ul className="grid gap-4 md:grid-cols-2">
+            {FACILITIES.map((item) => (
+              <li key={item} className="card flex items-center gap-3 text-muted">
+                <span className="text-accent" aria-hidden="true">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="testimonials" className="px-4 py-16">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-8 text-center text-3xl font-extrabold">Testimonials</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {TESTIMONIALS.map(([name, role, quote]) => (
+              <blockquote key={name} className="card">
+                <p className="text-muted">&ldquo;{quote}&rdquo;</p>
+                <footer className="mt-4 font-bold">
+                  {name}
+                  <span className="block text-sm font-normal text-muted">{role}</span>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="border-t border-border bg-surface-secondary px-4 py-16">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-extrabold">Contact Us</h2>
+            <p className="mt-2 text-muted">Questions about onboarding your academy? Send us a message.</p>
+          </div>
+          <form className="card space-y-4" onSubmit={handleContactSubmit}>
+            <input className="input-field" name="name" placeholder="Your name" value={contactForm.name} onChange={handleContactChange} required />
+            <input className="input-field" type="email" name="email" placeholder="Email" value={contactForm.email} onChange={handleContactChange} required />
+            <input className="input-field" type="tel" name="phone" placeholder="Phone (optional)" value={contactForm.phone} onChange={handleContactChange} />
+            <textarea className="input-field min-h-[120px]" name="message" placeholder="Message" value={contactForm.message} onChange={handleContactChange} required />
+            <button type="submit" className="btn-primary w-full" disabled={contactLoading}>
+              {contactLoading ? 'Sending…' : 'Send Message'}
+            </button>
+            {contactMessage.text && (
+              <p className={contactMessage.type === 'success' ? 'alert-success' : 'alert-error'}>{contactMessage.text}</p>
+            )}
+          </form>
+        </div>
+      </section>
+
       <section id="pricing" className="px-4 py-16 lg:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 text-center">
@@ -225,9 +312,15 @@ export default function LandingPage() {
             <h2 className="text-3xl font-extrabold">Create Your Academy Workspace</h2>
             <p className="mt-2 text-muted">Register your academy and admin account in one secure step.</p>
           </div>
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="mx-auto max-w-xl">
             <div className="card">
               <h3 className="mb-4 text-xl font-bold">Academy Signup</h3>
+              <p className="mb-4 text-sm text-muted">
+                Already have an account?{' '}
+                <Link to="/login/admin" className="font-semibold text-accent">
+                  Admin Login
+                </Link>
+              </p>
               <form onSubmit={handleSignupSubmit} noValidate>
                 <div className="mb-4">
                   <label className="label" htmlFor="signupName">Full Name</label>
@@ -252,9 +345,9 @@ export default function LandingPage() {
                 <div className="mb-4">
                   <label className="label" htmlFor="signupPlan">Subscription Plan</label>
                   <select className="input-field" id="signupPlan" name="subscription_plan" value={signupForm.subscription_plan} onChange={handleSignupChange} required>
-                    <option value="basic">Basic — 3 Coaches / 50 Students</option>
-                    <option value="pro">Pro — 15 Coaches / 300 Students</option>
-                    <option value="enterprise">Enterprise — Unlimited</option>
+                    <option value="free">Free — 3 Coaches / 30 Students</option>
+                    <option value="pro">Pro — 6 Coaches / 80 Students</option>
+                    <option value="plus">Plus — Unlimited</option>
                   </select>
                 </div>
                 <button type="submit" className="btn-primary w-full" disabled={signupLoading}>
@@ -263,28 +356,6 @@ export default function LandingPage() {
                 {signupMessage.text && (
                   <p className={signupMessage.type === 'success' ? 'alert-success' : 'alert-error'} role="alert">
                     {signupMessage.text}
-                  </p>
-                )}
-              </form>
-            </div>
-            <div className="card">
-              <h3 className="mb-2 text-xl font-bold">Admin Sign In</h3>
-              <p className="mb-4 text-sm text-muted">Already registered? Sign in to your dashboard.</p>
-              <form onSubmit={handleLoginSubmit} noValidate>
-                <div className="mb-4">
-                  <label className="label" htmlFor="loginEmail">Email</label>
-                  <input className="input-field" type="email" id="loginEmail" name="email" value={loginForm.email} onChange={handleLoginChange} required />
-                </div>
-                <div className="mb-4">
-                  <label className="label" htmlFor="loginPassword">Password</label>
-                  <input className="input-field" type="password" id="loginPassword" name="password" value={loginForm.password} onChange={handleLoginChange} required />
-                </div>
-                <button type="submit" className="btn-secondary w-full" disabled={loginLoading}>
-                  {loginLoading ? 'Signing in…' : 'Sign In to Dashboard'}
-                </button>
-                {loginMessage.text && (
-                  <p className={loginMessage.type === 'success' ? 'alert-success' : 'alert-error'} role="alert">
-                    {loginMessage.text}
                   </p>
                 )}
               </form>

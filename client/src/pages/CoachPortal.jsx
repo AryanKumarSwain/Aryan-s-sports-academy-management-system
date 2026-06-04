@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Navbar, { NavbarActions } from '../components/Navbar';
 import Loader from '../components/Loader';
 import { clearCoachToken, coachGet, coachPost } from '../api/client';
+import { CoachDailyNotes, CoachFeeCollection, CoachSelfAttendance } from './coach/CoachExtras';
 
 export default function CoachPortal() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function CoachPortal() {
   const [message, setMessage] = useState({ text: '', type: '' });
 
   const selectedBatch = batches.find((b) => String(b.batch_id) === String(selectedBatchId));
+  const allStudents = batches.flatMap((b) => b.students || []);
 
   const loadBatches = useCallback(async () => {
     setLoading(true);
@@ -276,6 +278,10 @@ export default function CoachPortal() {
             </form>
           )}
         </section>
+
+        <CoachSelfAttendance />
+        <CoachFeeCollection students={allStudents} />
+        <CoachDailyNotes students={allStudents} />
       </main>
 
       <footer className="border-t border-border py-6 text-center text-sm text-muted">
